@@ -6,45 +6,25 @@ const plans = [
   {
     name: "Visual Starter",
     price: "₹14,999",
-    period: "Per Project",
-    features: [
-      "Single Day Shoot (4 Hours)",
-      "20 Edited High-Res Photos",
-      "2 Cinematic Reels (15-30s)",
-      "Basic Color Grading",
-      "1 Revision Included",
-    ],
-    cta: "Book Starter",
+    period: "Single Shoot",
+    features: ["4-Hour Session", "20 Edited Stills", "2 Cinematic Reels", "Standard Grading", "Digital Delivery"],
+    cta: "Request Start",
     featured: false,
   },
   {
-    name: "Brand Growth",
+    name: "Editorial Growth",
     price: "₹34,999",
     period: "Per Month",
-    features: [
-      "2 Content Shoots Monthly",
-      "50 Edited High-Res Photos",
-      "8 Cinematic Reels Monthly",
-      "Advanced Color Grading",
-      "Social Media Management",
-      "Monthly Growth Strategy",
-    ],
-    cta: "Start Growing",
+    features: ["Bi-Monthly Shoots", "50 Edited Stills", "8 Cinematic Reels", "Advanced Grading", "Social Curation", "Strategy Consult"],
+    cta: "Request Growth",
     featured: true,
   },
   {
     name: "Elite Production",
     price: "₹89,999",
     period: "Per Month",
-    features: [
-      "Weekly Professional Shoots",
-      "Unlimited High-Res Photos",
-      "Unlimited Cinematic Reels",
-      "Full Account Management",
-      "Priority Support",
-      "Brand Identity Design",
-    ],
-    cta: "Go Elite",
+    features: ["Weekly Shoots", "Unlimited Captures", "Unlimited Cinematic Reels", "Full Channel Management", "Direct Messaging Support", "Brand Identity Systems"],
+    cta: "Request Elite",
     featured: false,
   },
 ];
@@ -52,74 +32,51 @@ const plans = [
 export default function PlansPage() {
   return (
     <>
-      <div className="page-hero">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="section-label">
-            <span className="section-label-line" />
-            Pricing & Packages
-            <span className="section-label-line" />
-          </div>
-          <h1>
-            Our <span className="accent-text">Plans</span>
-          </h1>
-          <p>
-            Choose the perfect package to elevate your brand&apos;s visual identity.
-            Tailored solutions for every stage of your growth.
-          </p>
-        </motion.div>
+      <div className="page-hero" style={{ textAlign: "left", padding: "10rem 4rem 4rem" }}>
+         <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+         >
+           <span className="section-label">Investment</span>
+           <h1 style={{ fontSize: "5rem", maxWidth: "800px" }}>Tailored <span className="accent-text">Plans</span> for Modern Growth.</h1>
+           <p style={{ maxWidth: "500px", marginTop: "2rem", color: "var(--text-secondary)", fontWeight: 300 }}>
+             Flexible packages designed with a cinematic vision and strategic curation in mind. Choose the level of production your brand deserves.
+           </p>
+         </motion.div>
       </div>
 
-      <section className="section">
-        <div className="plans-grid">
-          {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              className={`plan-card ${plan.featured ? "featured" : ""}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <div className="plan-name">{plan.name}</div>
-              <div className="plan-price">{plan.price}</div>
-              <div className="plan-period">{plan.period}</div>
-              
-              <ul className="plan-features">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
-                ))}
-              </ul>
-              
-              <a 
-                href="/contact" 
-                className={plan.featured ? "btn-primary" : "btn-secondary"}
-                style={{ width: "100%", justifyContent: "center" }}
-              >
-                {plan.cta}
-              </a>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section" style={{ background: "var(--bg-secondary)", textAlign: "center" }}>
+      <section className="section" style={{ borderTop: "1px solid var(--border)" }}>
         <div className="page-container">
-          <div className="section-label">
-            <span className="section-label-line" />
-            Custom Solutions
-            <span className="section-label-line" />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "var(--border)", border: "1px solid var(--border)" }}>
+            <div style={{ background: "var(--bg-primary)", padding: "4rem 2rem", borderRight: "1px solid var(--border)" }}>
+               <h3 style={{ fontSize: "1.2rem", fontWeight: 500, marginBottom: "2rem" }}>Packages</h3>
+               <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.8 }}>Every brand has unique needs. If our standard plans don&apos;t fit your requirements, we offer custom strategy sessions.</p>
+               <a href="/contact" className="btn-ghost" style={{ marginTop: "2rem", borderBottomColor: "var(--accent)" }}>Custom Quote</a>
+            </div>
+
+            {plans.map((p, i) => (
+              <motion.div
+                key={p.name}
+                style={{ background: p.featured ? "var(--bg-secondary)" : "var(--bg-primary)", padding: "4rem 2rem", transition: "var(--transition)" }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+              >
+                <span style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.2em", color: "var(--accent)", marginBottom: "1rem", display: "block" }}>{p.name}</span>
+                <div style={{ fontSize: "2.5rem", fontWeight: 500, marginBottom: "0.5rem" }}>{p.price}</div>
+                <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)", marginBottom: "3rem" }}>{p.period}</div>
+                
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "4rem" }}>
+                  {p.features.map((f) => (
+                    <li key={f} style={{ fontSize: "0.82rem", color: "var(--text-secondary)", fontWeight: 300 }}>• {f}</li>
+                  ))}
+                </ul>
+
+                <a href="/contact" className={p.featured ? "btn-minimal" : "btn-ghost"} style={{ width: "100%", justifyContent: "center" }}>{p.cta}</a>
+              </motion.div>
+            ))}
           </div>
-          <h2 style={{ marginBottom: "1.5rem" }}>Need a Custom Package?</h2>
-          <p style={{ maxWidth: "600px", margin: "0 auto 2.5rem", color: "var(--text-secondary)" }}>
-            Every brand has unique needs. If our standard plans don&apos;t fit your 
-            requirements, let&apos;s discuss a custom strategy tailored specifically for you.
-          </p>
-          <a href="/contact" className="btn-primary">
-            Get a Custom Quote
-          </a>
         </div>
       </section>
     </>

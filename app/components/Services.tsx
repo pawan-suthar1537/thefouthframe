@@ -5,88 +5,93 @@ import { useRef } from "react";
 
 const services = [
   {
-    icon: "📸",
-    title: "Professional Photography",
-    description: "From bridal shoots to fashion editorials, we capture moments with precision and artistry. Every frame tells your story beautifully.",
-    tags: ["Bridal", "Fashion", "Portrait", "Product"],
+    icon: "01",
+    title: "Cinematic Photography",
+    description: "Capturing light and movement with high-end precision for bridal editorials and luxury fashion brands.",
   },
   {
-    icon: "🎬",
+    icon: "02",
     title: "Video Production",
-    description: "Cinematic reels, behind-the-scenes content, and commercial videos crafted with professional-grade equipment and creative vision.",
-    tags: ["Reels", "Commercials", "BTS", "Promos"],
+    description: "Curation of professional reels and brand shorts with a cinematic edge for multi-channel digital exposure.",
   },
   {
-    icon: "📱",
-    title: "Social Media Management",
-    description: "End-to-end account management including content strategy, scheduling, engagement, and analytics-driven growth.",
-    tags: ["Instagram", "Content", "Analytics", "Growth"],
+    icon: "03",
+    title: "Social Strategy",
+    description: "Data-informed account management and strategy for modern influencers and visual creators.",
   },
   {
-    icon: "🎨",
-    title: "Brand Strategy",
-    description: "We build your brand identity from the ground up — visual language, mood boards, and a cohesive digital presence.",
-    tags: ["Identity", "Mood Boards", "Guidelines", "Voice"],
-  },
-  {
-    icon: "✏️",
+    icon: "04",
     title: "Creative Direction",
-    description: "From moodboarding to on-set direction, we ensure every creative element aligns perfectly with your brand vision.",
-    tags: ["Concept", "Styling", "Art Direction", "Sets"],
+    description: "Developing visual identities and moodboards to align every frame with your brand's unique ethos.",
   },
   {
-    icon: "📊",
-    title: "Digital Strategy",
-    description: "Data-driven digital marketing strategies that increase reach, engagement, and conversions across all platforms.",
-    tags: ["SEO", "Campaigns", "Ads", "Conversions"],
+    icon: "05",
+    title: "Digital Branding",
+    description: "Building a consistent and premium digital presence from logo design to curated visual experiences.",
+  },
+  {
+    icon: "06",
+    title: "Portfolio Consulting",
+    description: "Individual coaching on portfolio building and account growth for aspiring models and photographers.",
   },
 ];
 
 export default function Services({ limit }: { limit?: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const items = limit ? services.slice(0, limit) : services;
 
   return (
-    <section
-      className="section"
-      id="services"
-      ref={ref}
-      style={{ background: "var(--bg-secondary)" }}
-    >
-      <div className="section-header">
-        <div className="section-label">
-          <span className="section-label-line" />
-          What We Do
-          <span className="section-label-line" />
-        </div>
-        <h2 className="section-title">Our Services</h2>
-        <p className="section-subtitle">
-          From concept to creation — comprehensive visual and digital solutions
-          tailored to elevate your brand.
-        </p>
-      </div>
-
-      <div className="services-grid">
-        {items.map((service, i) => (
-          <motion.div
-            key={service.title}
-            className="service-card"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            whileHover={{ y: -6 }}
+    <section className="section" id="services" ref={ref}>
+      <div className="page-container">
+        <div style={{ marginBottom: "5rem" }}>
+          <motion.span
+            className="section-label"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
           >
-            <div className="service-icon">{service.icon}</div>
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-            <div className="service-tags">
-              {service.tags.map((tag) => (
-                <span key={tag} className="service-tag">{tag}</span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+            Offerings
+          </motion.span>
+          <motion.h2
+            style={{ fontSize: "3rem", maxWidth: "800px" }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Curating Modern <span style={{ fontStyle: "italic", color: "var(--accent)" }}>Solutions</span> for Vision-First Brands.
+          </motion.h2>
+        </div>
+
+        <div className="services-grid-v2">
+          {items.map((s, i) => (
+            <motion.div
+              key={s.title}
+              className="service-card-minimal"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}
+              style={{ position: "relative" }}
+            >
+              <span className="service-index">{s.icon}</span>
+              <h3 style={{ fontSize: "1.4rem", fontWeight: 500, marginBottom: "1.5rem" }}>{s.title}</h3>
+              <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.8 }}>{s.description}</p>
+              
+              <motion.div
+                initial={{ width: 0 }}
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  height: "2px",
+                  background: "var(--accent)",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
