@@ -1,43 +1,57 @@
 "use client";
 
 import { motion, useInView } from "motion/react";
-import { useRef } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const features = [
-    { title: "Storytelling", text: "Cinematic narratives for luxury brands.", icon: "01" },
-    { title: "Production", text: "Full-scale professional shoot management.", icon: "02" },
-    { title: "Strategy", text: "A creative approach to digital growth.", icon: "03" },
+    {
+      title: "Storytelling",
+      text: "Cinematic narratives for luxury brands and personal moments that need stronger visual memory.",
+      icon: "01",
+    },
+    {
+      title: "Production",
+      text: "Full-scale professional shoot planning, pacing, and delivery without the usual chaos.",
+      icon: "02",
+    },
+    {
+      title: "Strategy",
+      text: "A sharper digital approach so your visuals feel premium on every platform, not only on set.",
+      icon: "03",
+    },
   ];
 
   return (
     <section className="section" id="about" ref={ref}>
       <div className="page-container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10vw", alignItems: "start" }}>
-          
+        <div className="split-layout">
           <motion.div
+            className="media-panel about-visual"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1.2 }}
-            style={{ borderRadius: "var(--radius)", overflow: "hidden", position: "relative", aspectRatio: "4/5", background: "var(--bg-secondary)" }}
+            transition={{ duration: 1 }}
           >
             <Image
               src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=800"
-              alt="Studio Texture"
+              alt="Studio portrait setup"
               fill
-              style={{ objectFit: "cover", opacity: 0.4, filter: "grayscale(1)" }}
+              className="about-image"
               unoptimized
             />
-            <div style={{ position: "absolute", bottom: "3rem", left: "3rem", zIndex: 2, color: "var(--text-primary)" }}>
-              <h4 style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "3px" }}>Est. 2024</h4>
+            <div className="about-visual-note">
+              <strong className="section-label" style={{ marginBottom: "0.35rem" }}>
+                Est. 2024
+              </strong>
+              <p>Built for visual brands that need cleaner art direction and tighter execution.</p>
             </div>
           </motion.div>
 
-          <div style={{ padding: "4rem 0" }}>
+          <div className="about-copy">
             <motion.span
               className="section-label"
               initial={{ opacity: 0 }}
@@ -47,26 +61,37 @@ export default function About() {
             </motion.span>
 
             <motion.h2
-              style={{ fontSize: "3.5rem", marginBottom: "3rem", lineHeight: 1.1 }}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
-              We Manage Your <span style={{ fontStyle: "italic", color: "var(--accent)" }}>Visuals</span> & Your Account.
+              We handle the <span className="accent-text">visuals</span> and the
+              account pressure behind them.
             </motion.h2>
 
-            <motion.div
-              style={{ display: "flex", flexDirection: "column", gap: "3rem" }}
-              initial={{ opacity: 0, y: 30 }}
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ marginBottom: "1.5rem", maxWidth: "34rem" }}
             >
-              {features.map((f, i) => (
-                <div key={f.title} style={{ display: "flex", gap: "2rem" }}>
-                  <span style={{ color: "var(--accent)", fontSize: "11px", fontWeight: 700, paddingTop: "0.2rem" }}>{f.icon}</span>
+              The work is not just making a frame look beautiful. It is shaping a
+              consistent brand impression across shoot days, reels, edits, and the way
+              people remember your business after they scroll away.
+            </motion.p>
+
+            <motion.div
+              className="feature-list"
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {features.map((feature) => (
+                <div key={feature.title} className="feature-item">
+                  <span className="feature-number">{feature.icon}</span>
                   <div>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 500, marginBottom: "0.5rem" }}>{f.title}</h3>
-                    <p style={{ color: "var(--text-secondary)", fontWeight: 300, fontSize: "0.95rem" }}>{f.text}</p>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.text}</p>
                   </div>
                 </div>
               ))}

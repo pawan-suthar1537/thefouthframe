@@ -1,85 +1,115 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
+
+const navItems = [
+  { label: "Overview", href: "/" },
+  { label: "Work", href: "/gallery" },
+  { label: "Offerings", href: "/services" },
+  { label: "Pricing", href: "/plans" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dark, setDark] = useState(false); // Minimal theme defaults to light
-  const pathname = usePathname();
+
+  const syncScrollState = useEffectEvent(() => {
+    setScrolled(window.scrollY > 24);
+  });
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      document.documentElement.classList.add("dark");
-      setDark(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", handleScroll);
+    syncScrollState();
+    const handleScroll = () => syncScrollState();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    const next = !dark;
-    setDark(next);
-    if (next) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
-
-  const navItems = [
-    { label: "Overview", href: "/" },
-    { label: "Work", href: "/gallery" },
-    { label: "Offerings", href: "/services" },
-    { label: "Pricing", href: "/plans" },
-    { label: "Contact", href: "/contact" },
-  ];
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", mobileOpen);
+    return () => document.body.classList.remove("menu-open");
+  }, [mobileOpen]);
 
   return (
-    <>
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="navbar-inner">
-          <Link href="/" className="logo-text" style={{ textDecoration: "none", color: "var(--text-primary)" }}>
-            TheFourth<span>Frame</span>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <div className="navbar-shell">
+        <Link
+          href="/"
+          className="logo-text"
+          aria-label="The Fourth Frame home"
+          onClick={() => setMobileOpen(false)}
+        >
+          The Fourth<span>Frame</span>
+        </Link>
+
+        <ul className="nav-links">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <Link
+                href={item.href}
+                className={`nav-link ${pathname === item.href ? "active" : ""}`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="nav-actions">
+          <Link href="/contact" className="nav-cta" onClick={() => setMobileOpen(false)}>
+            Start Project
           </Link>
 
-          <ul className="nav-links">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <Link
-                  href={item.href}
-                  className={pathname === item.href ? "active" : ""}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <button
-                className="theme-toggle"
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-              >
-                {dark ? "☀️" : "🌙"}
-              </button>
-            </li>
-          </ul>
-
-          <div style={{ display: "none" }} id="mobile-toggle-v2">
-             {/* Mobile implementation would go here, simplified for desktop-first review */}
-          </div>
+          <button
+            type="button"
+            className="nav-toggle"
+            onClick={() => setMobileOpen((value) => !value)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+          >
+            {mobileOpen ? "Close" : "Menu"}
+          </button>
         </div>
-      </nav>
-    </>
+      </div>
+
+      <AnimatePresence>
+        {mobileOpen ? (
+          <motion.div
+            id="mobile-menu"
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="mobile-menu-inner">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`mobile-link ${pathname === item.href ? "active" : ""}`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span>{item.label}</span>
+                  <span aria-hidden="true">/</span>
+                </Link>
+              ))}
+              <Link
+                href="/contact"
+                className="btn-main mobile-menu-cta"
+                onClick={() => setMobileOpen(false)}
+              >
+                Let&apos;s Talk
+              </Link>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </nav>
   );
 }

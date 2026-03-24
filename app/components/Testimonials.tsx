@@ -12,50 +12,54 @@ export default function Testimonials() {
       initials: "AK",
       name: "Ananya Krishnan",
       role: "Fashion Brand Owner",
-      text: "The team's attention to detail and creative direction exceeded all expectations. They curated our brand imagery perfectly.",
+      text: "The team tightened our visual direction immediately. The final shoot looked premium and the edit flow felt far more organized than previous vendors.",
     },
     {
       initials: "RS",
       name: "Rahul Sharma",
       role: "Wedding Client",
-      text: "Every frame captured told a beautiful and cinematic story. The quality is simply world-class.",
+      text: "The result felt cinematic without looking forced. Every frame had emotion, but the overall delivery still felt polished and modern.",
     },
     {
       initials: "PM",
       name: "Priya Mehta",
       role: "Influencer",
-      text: "Their digital strategy doubled our engagement within months. Professional and truly visionary content curation.",
+      text: "They understood both content and positioning. The visuals looked better, and the account started feeling more consistent almost immediately.",
     },
   ];
 
   return (
-    <section className="section" id="testimonials" ref={ref} style={{ background: "var(--bg-secondary)" }}>
+    <section className="section" id="testimonials" ref={ref}>
       <div className="page-container">
-        <div style={{ textAlign: "center", marginBottom: "6rem" }}>
-           <span className="section-label">Selected Reviews</span>
-           <h2 style={{ fontSize: "3.5rem", fontWeight: 500 }}>Shared <span className="accent-text">Perspectives</span> from Our Clients.</h2>
+        <div className="section-center">
+          <span className="section-label">Selected Reviews</span>
+          <h2 className="section-title">
+            Shared <span className="accent-text">perspectives</span> from clients who
+            needed stronger visual direction.
+          </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "4rem" }}>
-           {testimonials.map((t, i) => (
-             <motion.div
-               key={t.name}
-               style={{ borderLeft: "1px solid var(--border)", paddingLeft: "3rem", transition: "var(--transition)" }}
-               initial={{ opacity: 0, y: 15 }}
-               animate={isInView ? { opacity: 1, y: 0 } : {}}
-               transition={{ duration: 0.8, delay: i * 0.2 }}
-             >
-                <div style={{ fontSize: "2.5rem", color: "var(--accent)", fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>&ldquo;</div>
-                <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.8, fontStyle: "italic", marginBottom: "4rem" }}>{t.text}</p>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                   <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "var(--accent)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.6rem" }}>{t.initials}</div>
-                   <div>
-                      <h4 style={{ fontSize: "0.85rem", fontWeight: 600 }}>{t.name}</h4>
-                      <span style={{ fontSize: "0.7rem", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.15em" }}>{t.role}</span>
-                   </div>
+        <div className="testimonials-grid">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={testimonial.name}
+              className="testimonial-card"
+              initial={{ opacity: 0, y: 15 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: index * 0.14 }}
+            >
+              <div className="testimonial-mark">&ldquo;</div>
+              <p>{testimonial.text}</p>
+
+              <div className="testimonial-person">
+                <div className="testimonial-avatar">{testimonial.initials}</div>
+                <div>
+                  <h3 style={{ fontSize: "1rem", marginBottom: "0.15rem" }}>{testimonial.name}</h3>
+                  <span className="testimonial-role">{testimonial.role}</span>
                 </div>
-             </motion.div>
-           ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
