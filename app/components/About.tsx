@@ -41,7 +41,7 @@ export default function About() {
               alt="Studio portrait setup"
               fill
               className="about-image"
-              unoptimized
+              sizes="(max-width: 1024px) 100vw, 46vw"
             />
             <div className="about-visual-note">
               <strong className="section-label" style={{ marginBottom: "0.35rem" }}>

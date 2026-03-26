@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { startTransition, useDeferredValue, useState } from "react";
 
 const galleryItems = [
   {
@@ -68,11 +68,12 @@ const categories = ["All", "Photography", "Film", "Fashion", "BTS"];
 
 export default function GalleryPage() {
   const [activeTab, setActiveTab] = useState("All");
+  const deferredTab = useDeferredValue(activeTab);
 
   const filteredItems =
-    activeTab === "All"
+    deferredTab === "All"
       ? galleryItems
-      : galleryItems.filter((item) => item.category === activeTab);
+      : galleryItems.filter((item) => item.category === deferredTab);
 
   return (
     <>
@@ -131,7 +132,9 @@ export default function GalleryPage() {
                 <button
                   key={category}
                   type="button"
-                  onClick={() => setActiveTab(category)}
+                  onClick={() => {
+                    startTransition(() => setActiveTab(category));
+                  }}
                   className={`gallery-filter ${activeTab === category ? "active" : ""}`}
                 >
                   {category}
@@ -150,7 +153,13 @@ export default function GalleryPage() {
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 16 }}
-                  transition={{ duration: 0.45, delay: index * 0.04 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 190,
+                    damping: 24,
+                    mass: 0.84,
+                    delay: index * 0.02,
+                  }}
                 >
                   <div className="gallery-media">
                     <Image
@@ -158,7 +167,6 @@ export default function GalleryPage() {
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      unoptimized
                     />
                   </div>
                   <div className="gallery-card-copy">

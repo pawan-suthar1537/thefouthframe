@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sample campaign image three</title>
+  <desc id="desc">Rose editorial campaign placeholder with layered composition and warm highlights.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#241214" />
+      <stop offset="52%" stop-color="#824a4f" />
+      <stop offset="100%" stop-color="#f0c9b4" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#bg)" />
+  <rect x="104" y="94" width="1192" height="812" rx="42" fill="#120a0c" opacity=".24" stroke="#fde3d0" stroke-opacity=".24" />
+  <rect x="196" y="156" width="462" height="594" rx="30" fill="#ffe9da" opacity=".13" />
+  <rect x="724" y="164" width="458" height="336" rx="28" fill="#281618" opacity=".54" />
+  <rect x="770" y="208" width="366" height="244" rx="18" fill="#fff3ea" opacity=".12" />
+  <path d="M722 852c-116-128-171-258-164-390 7-132 82-248 223-350 131 86 205 200 224 342 19 141-32 274-153 398H722z" fill="#160d10" opacity=".78" />
+  <circle cx="1114" cy="760" r="120" fill="#ffe0cf" opacity=".14" />
+  <text x="196" y="816" fill="#fde9dd" font-family="Arial, sans-serif" font-size="26" letter-spacing="8">CAMPAIGN SAMPLE 03</text>
+</svg>

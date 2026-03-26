@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sample location image four</title>
+  <desc id="desc">Classic estate placeholder with grand windows and soft neutral light.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#efe7da" />
+      <stop offset="55%" stop-color="#d6c3a6" />
+      <stop offset="100%" stop-color="#9c8468" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#bg)" />
+  <rect x="0" y="706" width="1400" height="294" fill="#241a14" opacity=".84" />
+  <rect x="194" y="126" width="1012" height="538" rx="36" fill="#fff8ec" opacity=".44" />
+  <rect x="256" y="188" width="234" height="412" rx="18" fill="#fffdf8" opacity=".7" />
+  <rect x="544" y="188" width="312" height="412" rx="18" fill="#fffdf8" opacity=".52" />
+  <rect x="910" y="188" width="234" height="412" rx="18" fill="#fffdf8" opacity=".68" />
+  <circle cx="1116" cy="184" r="72" fill="#fff6e4" opacity=".62" />
+  <path d="M456 646h490v78H456z" fill="#f0cb94" opacity=".4" />
+  <text x="256" y="830" fill="#fff2db" font-family="Arial, sans-serif" font-size="26" letter-spacing="8">LOCATION SAMPLE 04</text>
+</svg>

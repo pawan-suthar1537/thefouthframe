@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sample campaign image four</title>
+  <desc id="desc">Neutral luxury campaign placeholder with graphic framing and strong contrast.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#171311" />
+      <stop offset="50%" stop-color="#5a493d" />
+      <stop offset="100%" stop-color="#efe3cd" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#bg)" />
+  <rect x="106" y="94" width="1188" height="812" rx="42" fill="#0d0b0a" opacity=".24" stroke="#fff1da" stroke-opacity=".2" />
+  <rect x="176" y="154" width="406" height="604" rx="30" fill="#fff4df" opacity=".11" />
+  <rect x="650" y="162" width="566" height="288" rx="28" fill="#1d1815" opacity=".6" />
+  <rect x="702" y="214" width="462" height="184" rx="18" fill="#fef5e5" opacity=".1" />
+  <path d="M734 850c-112-136-164-266-156-391 8-126 81-237 220-333 135 84 212 196 232 334 20 138-31 268-152 390H734z" fill="#15110f" opacity=".8" />
+  <circle cx="1116" cy="768" r="120" fill="#f9e7be" opacity=".12" />
+  <text x="176" y="818" fill="#fbf1df" font-family="Arial, sans-serif" font-size="26" letter-spacing="8">CAMPAIGN SAMPLE 04</text>
+</svg>

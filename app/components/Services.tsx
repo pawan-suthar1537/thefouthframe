@@ -2,92 +2,103 @@
 
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import Image from "next/image";
+import { serviceImages } from "../lib/imageLinks";
 
-const services = [
+const cardReveal = {
+  type: "spring",
+  stiffness: 170,
+  damping: 22,
+  mass: 0.8,
+} as const;
+
+const agencyServices = [
   {
-    icon: "01",
-    title: "Cinematic Photography",
-    description: "Capturing light and movement with high-end precision for bridal editorials and luxury fashion brands.",
+    index: "01",
+    title: "TALENT CURATION",
+    description:
+      "Our roster features world-class models, artists, and creators. We handle end-to-end booking management, career strategy, and elite placement for global campaigns.",
+    image: serviceImages.talent,
+    details: "ROSTER PLACEMENT | BOOKING | STRATEGY",
   },
   {
-    icon: "02",
-    title: "Video Production",
-    description: "Curation of professional reels and brand shorts with a cinematic edge for multi-channel digital exposure.",
+    index: "02",
+    title: "PRODUCTION MANAGEMENT",
+    description:
+      "From conceptualization to post-production, we manage every frame. Our team handles logistics, crew coordination, and technical execution for high-end fashion and commercial sets.",
+    image: serviceImages.production,
+    details: "SCHEDULING | LOGISTICS | CREW",
   },
   {
-    icon: "03",
-    title: "Social Strategy",
-    description: "Data-informed account management and strategy for modern influencers and visual creators.",
-  },
-  {
-    icon: "04",
-    title: "Creative Direction",
-    description: "Developing visual identities and moodboards to align every frame with your brand's unique ethos.",
-  },
-  {
-    icon: "05",
-    title: "Digital Branding",
-    description: "Building a consistent and premium digital presence from logo design to curated visual experiences.",
-  },
-  {
-    icon: "06",
-    title: "Portfolio Consulting",
-    description: "Individual coaching on portfolio building and account growth for aspiring models and photographers.",
+    index: "03",
+    title: "LOCATION SERVICES",
+    description:
+      "Access our exclusive database of unique shooting environments. We provide site scouting, permit management, and on-site logistics for minimalist studios and luxury estates.",
+    image: serviceImages.locations,
+    details: "SITE SCOUTING | PERMITS | ACCESS",
   },
 ];
 
-export default function Services({ limit }: { limit?: number }) {
+export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const items = limit ? services.slice(0, limit) : services;
 
   return (
-    <section className="section" id="services" ref={ref}>
+    <section className="section bg-white" id="services" ref={ref}>
       <div className="page-container">
-        <div style={{ marginBottom: "5rem" }}>
+        <div className="section-center mb-16">
           <motion.span
             className="section-label"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            Offerings
+            OUR EXPERTISE
           </motion.span>
           <motion.h2
-            style={{ fontSize: "3rem", maxWidth: "800px" }}
+            className="section-title"
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ ...cardReveal, delay: 0.1 }}
           >
-            Curating Modern <span style={{ fontStyle: "italic", color: "var(--accent)" }}>Solutions</span> for Vision-First Brands.
+            Integrated Production &{" "}
+            <span className="metallic-gold">Talent Management</span>
           </motion.h2>
         </div>
 
-        <div className="services-grid-v2">
-          {items.map((s, i) => (
+        <div className="services-grid-premium">
+          {agencyServices.map((s, i) => (
             <motion.div
               key={s.title}
-              className="service-card-minimal"
-              initial={{ opacity: 0, y: 20 }}
+              className="service-card-premium"
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}
-              style={{ position: "relative" }}
+              transition={{ ...cardReveal, delay: 0.16 + i * 0.08 }}
             >
-              <span className="service-index">{s.icon}</span>
-              <h3 style={{ fontSize: "1.4rem", fontWeight: 500, marginBottom: "1.5rem" }}>{s.title}</h3>
-              <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.8 }}>{s.description}</p>
-              
+              <div className="service-card-visual">
+                <Image
+                  src={s.image}
+                  alt={s.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="service-image"
+                />
+                <div className="service-visual-overlay" />
+                <span className="service-number">{s.index}</span>
+              </div>
+
+              <div className="service-card-body">
+                <h3 className="service-card-title">{s.title}</h3>
+                <p className="service-card-desc">{s.description}</p>
+                <div className="service-card-meta">
+                  <span>{s.details}</span>
+                </div>
+              </div>
+
               <motion.div
-                initial={{ width: 0 }}
-                whileHover={{ width: "100%" }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  height: "2px",
-                  background: "var(--accent)",
-                }}
+                className="service-accent-line"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               />
             </motion.div>
           ))}

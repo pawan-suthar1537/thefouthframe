@@ -6,11 +6,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Overview", href: "/" },
-  { label: "Work", href: "/gallery" },
-  { label: "Offerings", href: "/services" },
-  { label: "Pricing", href: "/plans" },
-  { label: "Contact", href: "/contact" },
+  { label: "Talent", href: "#talent" },
+  { label: "Production", href: "#services" },
+  { label: "Locations", href: "#locations" },
+  { label: "Work", href: "#work" },
+  { label: "Investment", href: "#pricing" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -39,11 +40,14 @@ export default function Navbar() {
       <div className="navbar-shell">
         <Link
           href="/"
-          className="logo-text"
-          aria-label="The Fourth Frame home"
+          className="logo-brand"
+          aria-label="THE AGENCY FRAME home"
           onClick={() => setMobileOpen(false)}
         >
-          The Fourth<span>Frame</span>
+          <img
+            src="/images/logo.jpg"
+            alt="The Agency Frame Logo"
+          />
         </Link>
 
         <ul className="nav-links">
@@ -61,7 +65,7 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-actions">
-          <Link href="/contact" className="nav-cta" onClick={() => setMobileOpen(false)}>
+          <Link href="/contact" className="btn-premium nav-cta" onClick={() => setMobileOpen(false)}>
             Start Project
           </Link>
 

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Editorial studio placeholder hero image</title>
+  <desc id="desc">A stylized production set with warm gradients, lighting panels, and framing elements.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#191411" />
+      <stop offset="45%" stop-color="#3a2419" />
+      <stop offset="100%" stop-color="#8c5a37" />
+    </linearGradient>
+    <radialGradient id="glowA" cx="20%" cy="18%" r="42%">
+      <stop offset="0%" stop-color="#f6d08a" stop-opacity=".78" />
+      <stop offset="100%" stop-color="#f6d08a" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="82%" cy="24%" r="38%">
+      <stop offset="0%" stop-color="#f0b17c" stop-opacity=".42" />
+      <stop offset="100%" stop-color="#f0b17c" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f7e0bf" stop-opacity=".95" />
+      <stop offset="100%" stop-color="#c08457" stop-opacity=".2" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg)" />
+  <rect width="1600" height="1200" fill="url(#glowA)" />
+  <rect width="1600" height="1200" fill="url(#glowB)" />
+  <path d="M0 960C220 880 442 860 668 900c180 31 291 60 450 42 162-18 315-83 482-197v455H0z" fill="#100d0b" opacity=".72" />
+  <path d="M0 1010C239 905 409 893 625 938c176 37 347 77 548 41 132-23 274-84 427-184v405H0z" fill="#2a1912" opacity=".55" />
+  <rect x="1030" y="138" width="362" height="678" rx="28" fill="#120f0d" opacity=".54" />
+  <rect x="1066" y="176" width="134" height="274" rx="16" fill="url(#panel)" />
+  <rect x="1226" y="176" width="134" height="274" rx="16" fill="url(#panel)" opacity=".78" />
+  <rect x="1066" y="484" width="134" height="274" rx="16" fill="url(#panel)" opacity=".8" />
+  <rect x="1226" y="484" width="134" height="274" rx="16" fill="url(#panel)" opacity=".62" />
+  <path d="M382 828c59-214 176-380 353-497 77 71 134 166 171 286 34 111 33 225-4 343H382z" fill="#0e0a09" opacity=".58" />
+  <path d="M730 328c84 77 143 168 177 272 25 78 34 153 29 228-93-12-167-46-223-101-72-71-107-167-107-287 0-31 2-63 6-96z" fill="#e8be7d" opacity=".22" />
+  <circle cx="1288" cy="936" r="168" fill="#e1a75d" opacity=".18" />
+  <circle cx="332" cy="248" r="158" fill="#f4dba8" opacity=".12" />
+  <path d="M120 190h272l-42 498H78z" fill="#f2c47e" opacity=".08" />
+  <path d="M430 206h152l-28 345H398z" fill="#f7d3a0" opacity=".12" />
+  <g fill="none" stroke="#f7dfb7" stroke-opacity=".18">
+    <path d="M120 118h1360" />
+    <path d="M120 1082h1360" />
+    <path d="M120 118v964" />
+    <path d="M1480 118v964" />
+  </g>
+  <text x="132" y="1048" fill="#f6d6aa" font-family="Arial, sans-serif" font-size="28" letter-spacing="8">SAMPLE HERO FRAME</text>
+</svg>

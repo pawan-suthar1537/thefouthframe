@@ -4,28 +4,18 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
-  title: "The Fourth Frame | Professional Shoots & Digital Strategy",
+  title: "THE AGENCY FRAME | Luxury Modeling, Talent & Production",
   description:
-    "Crafting stories, one frame at a time. Professional photography, videography, and digital strategy for brands that need a sharper visual presence.",
+    "An ultra-luxury, high-end Modeling, Talent, and Production Agency. Managing the frame, elevating every vision with elite models and prime locations.",
   keywords: [
-    "photography",
-    "videography",
-    "bridal photography",
-    "fashion photography",
-    "digital strategy",
-    "social media management",
-    "brand strategy",
-    "content creation",
-    "the fourth frame",
+    "modeling agency",
+    "talent management",
+    "production studio",
+    "luxury fashion",
+    "bridal production",
+    "prime locations",
+    "THE AGENCY FRAME",
   ],
-  openGraph: {
-    title: "The Fourth Frame | Professional Shoots & Digital Strategy",
-    description:
-      "Crafting stories, one frame at a time. Professional photography, videography, and digital strategy.",
-    type: "website",
-    locale: "en_US",
-    siteName: "The Fourth Frame",
-  },
 };
 
 export default function RootLayout({
@@ -34,10 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className="antialiased">
         <Navbar />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>

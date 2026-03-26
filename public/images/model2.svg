@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sample model portrait two</title>
+  <desc id="desc">Cool editorial portrait placeholder with deep shadows and a silhouette.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101318" />
+      <stop offset="50%" stop-color="#35505e" />
+      <stop offset="100%" stop-color="#bfc9cd" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)" />
+  <rect x="54" y="54" width="792" height="1092" rx="34" fill="#0c1014" opacity=".26" stroke="#dfe6e8" stroke-opacity=".28" />
+  <circle cx="182" cy="282" r="168" fill="#dfe5e7" opacity=".14" />
+  <ellipse cx="460" cy="700" rx="224" ry="320" fill="#10161d" opacity=".8" />
+  <ellipse cx="460" cy="440" rx="120" ry="146" fill="#95a8af" opacity=".45" />
+  <path d="M250 982c82-120 156-180 222-180 72 0 147 60 224 180v156H250z" fill="#1d2730" opacity=".95" />
+  <path d="M260 258c140 36 273 34 398-8" fill="none" stroke="#f4f8f8" stroke-opacity=".22" stroke-width="18" />
+  <text x="104" y="1080" fill="#e6efef" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">MODEL SAMPLE 02</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sample location image three</title>
+  <desc id="desc">Studio location placeholder with overhead lighting and a central stage.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#201411" />
+      <stop offset="48%" stop-color="#5d3928" />
+      <stop offset="100%" stop-color="#d7b79a" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#bg)" />
+  <rect x="0" y="734" width="1400" height="266" fill="#100d0b" opacity=".86" />
+  <circle cx="704" cy="320" r="182" fill="#ffe3b4" opacity=".44" />
+  <rect x="294" y="182" width="812" height="452" rx="34" fill="#0f0c0a" opacity=".44" />
+  <rect x="354" y="234" width="692" height="348" rx="28" fill="#2a1b15" opacity=".42" stroke="#ffdca9" stroke-opacity=".26" />
+  <rect x="486" y="598" width="428" height="120" rx="24" fill="#d2a36a" opacity=".46" />
+  <path d="M414 154h580l-54 92H468z" fill="#f7e1bc" opacity=".16" />
+  <text x="352" y="834" fill="#fde8c9" font-family="Arial, sans-serif" font-size="26" letter-spacing="8">LOCATION SAMPLE 03</text>
+</svg>

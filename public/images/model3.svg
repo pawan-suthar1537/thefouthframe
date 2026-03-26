@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Sample model portrait three</title>
+  <desc id="desc">Rose and copper portrait placeholder with a stylized fashion silhouette.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#291414" />
+      <stop offset="52%" stop-color="#8d4e50" />
+      <stop offset="100%" stop-color="#efd0b4" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)" />
+  <rect x="64" y="64" width="772" height="1072" rx="30" fill="#120c0d" opacity=".24" stroke="#f4d7c4" stroke-opacity=".28" />
+  <circle cx="706" cy="256" r="164" fill="#f4d8c2" opacity=".16" />
+  <ellipse cx="450" cy="724" rx="214" ry="318" fill="#211215" opacity=".8" />
+  <ellipse cx="452" cy="444" rx="128" ry="150" fill="#d39a7d" opacity=".42" />
+  <path d="M258 986c88-122 168-183 240-183 74 0 154 61 242 183v150H258z" fill="#4a2526" opacity=".94" />
+  <path d="M280 268c108-72 236-94 384-66" fill="none" stroke="#ffe2cf" stroke-opacity=".22" stroke-width="18" />
+  <text x="104" y="1080" fill="#fee8d5" font-family="Arial, sans-serif" font-size="24" letter-spacing="7">MODEL SAMPLE 03</text>
+</svg>
