@@ -6,12 +6,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Talent", href: "#talent" },
-  { label: "Production", href: "#services" },
-  { label: "Locations", href: "#locations" },
-  { label: "Work", href: "#work" },
-  { label: "Investment", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+
+  { label: "Services", href: "#services" },
+  { label: "Models", href: "#work" },
+  // { label: "Work", href: "#work" },
+  // { label: "Investment", href: "#pricing" },
+  // { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {

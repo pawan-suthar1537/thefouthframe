@@ -33,18 +33,12 @@ export default function ContactSection() {
                 <span className="tiny-label">LOCATION</span>
                 <p className="contact-value">
                   Luxury Production Studio, <br />
-                  Mumbai, India
+                  Bikaner, India
                 </p>
               </div>
             </div>
 
-            <div className="map-placeholder mt-12">
-              <div className="map-box">
-                <span className="metallic-gold text-[0.6rem] tracking-[0.3em]">
-                  MUMBAI STUDIO | 19.0760 DEG N, 72.8777 DEG E
-                </span>
-              </div>
-            </div>
+
           </div>
 
           <div className="contact-form-premium">

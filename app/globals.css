@@ -511,7 +511,7 @@ p {
   justify-self: end;
   order: 3;
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 1.5rem;
 }
 
@@ -1012,8 +1012,9 @@ p {
 
 /* Masonry Layout */
 .masonry-grid {
-  columns: 4 300px;
-  column-gap: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
 }
 
 .masonry-item {
@@ -1208,7 +1209,7 @@ p {
 /* Services Premium */
 .services-grid-premium {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
@@ -2293,6 +2294,10 @@ p {
     order: -1;
     margin-bottom: 2rem;
   }
+
+  .footer-spacer {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2440,8 +2445,10 @@ p {
   .services-grid-premium,
   .plans-grid-premium,
   .process-grid,
-  .testimonials-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .testimonials-grid,
+  .masonry-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    columns: 4;
   }
 
   .gallery-card,
@@ -2523,8 +2530,10 @@ p {
   .stats-grid,
   .services-grid-premium,
   .process-grid,
-  .testimonials-grid {
+  .testimonials-grid,
+  .masonry-grid {
     grid-template-columns: 1fr;
+    columns: 1;
   }
 
   .gallery-card,

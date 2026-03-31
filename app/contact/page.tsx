@@ -16,11 +16,7 @@ const contactCards = [
     description: "If you want a quicker first touch, message us here and we will follow up properly.",
     href: "https://www.instagram.com/the_fourthframe_/",
   },
-  {
-    label: "Base",
-    title: "Pune, Maharashtra",
-    description: "Available for location shoots, short campaigns, and recurring monthly content work.",
-  },
+
 ];
 
 export default function ContactPage() {
@@ -184,14 +180,14 @@ export default function ContactPage() {
         <div className="page-container">
           <div className="contact-map-shell">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04710156947!2d73.7805179!3d18.5245648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e674109ad%3A0x82202a3edc0d09e3!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1711280000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51510.72085144021!2d73.2783407296867!3d28.021401806710703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393fdd7bd90bbb89%3A0x4ce3121a7664816b!2sBikaner%2C%20Rajasthan!5e1!3m2!1sen!2sin!4v1774951006683!5m2!1sen!2sin"
               width="100%"
               height="500"
-              style={{ border: 0, filter: "grayscale(0.9) contrast(1.05) saturate(0.85)" }}
+
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Pune Location Map"
+              title="Bikaner Location Map"
             ></iframe>
           </div>
         </div>

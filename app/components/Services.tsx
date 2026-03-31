@@ -37,6 +37,14 @@ const agencyServices = [
     image: serviceImages.locations,
     details: "SITE SCOUTING | PERMITS | ACCESS",
   },
+  {
+    index: "04",
+    title: "LOCATION SERVICESs",
+    description:
+      "Access our exclusive database of unique shooting environments. We provide site scouting, permit management, and on-site logistics for minimalist studios and luxury estates.",
+    image: serviceImages.locations,
+    details: "SITE SCOUTING | PERMITS | ACCESS",
+  },
 ];
 
 export default function Services() {

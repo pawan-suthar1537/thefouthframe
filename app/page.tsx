@@ -11,24 +11,24 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <div id="talent">
+      {/* <div id="talent">
         <TalentGrid />
-      </div>
+      </div> */}
       <div id="services">
         <Services />
       </div>
       <div id="work">
         <PortfolioExplorer />
       </div>
-      <div id="locations">
+      {/* <div id="locations">
         <LocationMasonry />
-      </div>
-      <div id="pricing">
+      </div> */}
+      {/* <div id="pricing">
         <PricingSection />
-      </div>
-      <div id="reviews">
+      </div> */}
+      {/* <div id="reviews">
         <Testimonials />
-      </div>
+      </div> */}
       <div id="contact">
         <ContactSection />
       </div>

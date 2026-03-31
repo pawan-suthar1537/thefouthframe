@@ -1,29 +1,21 @@
 import Link from "next/link";
 
 const agencyNav = [
-  { label: "Talent Roster", href: "#talent" },
-  { label: "Production", href: "#services" },
-  { label: "Portfolio", href: "#work" },
-  { label: "Locations", href: "#locations" },
+  { label: "Services", href: "/" },
+  { label: "Models", href: "/" },
+
 ];
 
-const quickLinks = [
-  { label: "Services", href: "/services" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Plans", href: "/plans" },
-  { label: "Contact", href: "/contact" },
-];
+
 
 const studioPresence = [
-  { city: "Pune", note: "Primary Base" },
-  { city: "Mumbai", note: "Campaign Production" },
-  { city: "Remote", note: "Pan-India + International" },
+  { city: "Bikaner", note: "Primary Base" },
+
 ];
 
 const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/the_fourthframe_/" },
-  { label: "Vimeo", href: "https://vimeo.com/" },
-  { label: "Behance", href: "https://www.behance.net/" },
+
 ];
 
 export default function Footer() {
@@ -60,17 +52,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Pages (Left Align) */}
-          <div className="footer-nav-col">
-            <span className="footer-label-gold">PAGES</span>
-            <div className="footer-nav-links-v4">
-              {quickLinks.map((link) => (
-                <Link key={link.label} href={link.href} className="footer-nav-link-v4">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+          {/* Spacer to restore symmetry after removing Quick Links */}
+          <div className="footer-spacer" aria-hidden="true" />
 
           {/* Column 3: Central Branding (The Anchor - Center Align) */}
           <div className="footer-brand-central">
