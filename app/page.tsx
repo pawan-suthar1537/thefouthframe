@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import TalentGrid from "./components/TalentGrid";
 import Services from "./components/Services";
+import Founders from "./components/Founders";
 import PortfolioExplorer from "./components/PortfolioExplorer";
 import LocationMasonry from "./components/LocationMasonry";
 import PricingSection from "./components/PricingSection";
@@ -14,9 +15,13 @@ export default function Home() {
       {/* <div id="talent">
         <TalentGrid />
       </div> */}
+      <div id="founders">
+        <Founders />
+      </div>
       <div id="services">
         <Services />
       </div>
+
       <div id="work">
         <PortfolioExplorer />
       </div>

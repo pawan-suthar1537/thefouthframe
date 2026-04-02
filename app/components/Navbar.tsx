@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,19 +16,7 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const syncScrollState = useEffectEvent(() => {
-    setScrolled(window.scrollY > 24);
-  });
-
-  useEffect(() => {
-    syncScrollState();
-    const handleScroll = () => syncScrollState();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", mobileOpen);
@@ -36,7 +24,7 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className="navbar">
       <div className="navbar-shell">
         <Link
           href="/"
@@ -47,6 +35,7 @@ export default function Navbar() {
           <img
             src="/images/logo.jpg"
             alt="The Agency Frame Logo"
+            style={{ borderRadius: "50%", objectFit: "cover" }}
           />
         </Link>
 

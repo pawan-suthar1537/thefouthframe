@@ -1,73 +1,196 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
-import { portfolioImagePool } from "../lib/imageLinks";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
-const INITIAL_PROJECTS = [
-  { id: 1, title: "L'OREAL PARIS", service: "PRODUCTION MANAGEMENT", image: portfolioImagePool[0], size: "tall" },
-  { id: 2, title: "VOGUE INDIA", service: "TALENT CURATION", image: portfolioImagePool[1], size: "small" },
-  { id: 3, title: "CARTIER LUXE", service: "CINEMATIC FILM", image: portfolioImagePool[2], size: "medium" },
-  { id: 4, title: "NIKE ACTIVE", service: "LOCATION SERVICES", image: portfolioImagePool[3], size: "wide" },
-
+const models = [
+  {
+    id: 1,
+    name: "Iri",
+    height: '162 cm (5\'4")',
+    hair: "Dark Brown",
+    eyes: "Dark Brown",
+    image: "/main/M1.jpeg",
+  },
+  {
+    id: 2,
+    name: "Iri",
+    height: '162 cm (5\'4")',
+    hair: "Dark Brown",
+    eyes: "Dark Brown",
+    image: "/main/M1.jpeg",
+  },
+  {
+    id: 3,
+    name: "Iri",
+    height: '162 cm (5\'4")',
+    hair: "Dark Brown",
+    eyes: "Dark Brown",
+    image: "/main/M1.jpeg",
+  },
+  {
+    id: 4,
+    name: "Iri",
+    height: '162 cm (5\'4")',
+    hair: "Dark Brown",
+    eyes: "Dark Brown",
+    image: "/main/M1.jpeg",
+  },
 ];
 
+const cardReveal = {
+  type: "spring",
+  stiffness: 170,
+  damping: 22,
+  mass: 0.8,
+} as const;
+
 export default function PortfolioExplorer() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="section bg-white" id="work">
+    <section className="section bg-white" id="work" ref={ref}>
       <div className="page-container">
         <div className="section-center mb-16">
-          <span className="section-label">OUR TALENT</span>
-          <h2 className="section-title">
+          <motion.span
+            className="section-label"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+          >
+            OUR TALENT
+          </motion.span>
+          <motion.h2
+            className="section-title"
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ ...cardReveal, delay: 0.1 }}
+          >
             Models{" "}
-            <span className="metallic-gold">List</span>
-          </h2>
+            <span className="accent-text" style={{ fontStyle: "italic" }}>
+              Roster
+            </span>
+          </motion.h2>
         </div>
 
-        <div className="masonry-grid">
-          <AnimatePresence>
-            {INITIAL_PROJECTS.map((proj, i) => (
-              <motion.div
-                key={`${proj.id}-${i}`}
-                className={`masonry-item item-${proj.size}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 180,
-                  damping: 22,
-                  mass: 0.8,
-                  delay: (i % 3) * 0.05,
-                }}
-                viewport={{ once: true, amount: 0.18 }}
-              >
+        <div className="models-grid">
+          {models.map((model, i) => (
+            <motion.div
+              key={model.id}
+              className="group"
+              style={{
+                position: "relative",
+                height: "520px",
+                width: "100%",
+                overflow: "hidden",
+                borderRadius: "30px",
+                cursor: "pointer",
+              }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ ...cardReveal, delay: 0.12 + i * 0.08 }}
+              whileHover={{
+                y: -14,
+                boxShadow: "0 28px 60px rgba(0,0,0,0.18)",
+              }}
+            >
+              {/* Image */}
+              <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
                 <Image
-                  src={proj.image}
-                  alt={proj.title}
-                  width={600}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="masonry-image"
+                  src={model.image}
+                  alt={model.name}
+                  fill
+                  quality={90}
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="masonry-overlay">
-                  <div className="p-8 text-center">
-                    <h3 className="text-white text-xl font-serif tracking-widest">
-                      {proj.title}
-                    </h3>
-                    <p className="metallic-gold text-[0.6rem] tracking-widest mt-2">
-                      {proj.service}
-                    </p>
-                    <button className="btn-outline-gold mt-6 py-2 px-6 text-[0.6rem]">
-                      VIEW CASE STUDY
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+                <div
+                  className="transition-opacity duration-500"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.4) 45%, transparent 100%)",
+                    opacity: 0.65,
+                  }}
+                />
+              </div>
 
+              {/* Content overlay */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  width: "100%",
+                  padding: "6rem 2rem 2.5rem 2rem",
+                  background:
+                    "linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.6) 55%, transparent 100%)",
+                  borderRadius: "0 0 30px 30px",
+                  zIndex: 10,
+                }}
+              >
+                {/* Model Name */}
+                <h4
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "1.6rem",
+                    fontWeight: 500,
+                    color: "#fff",
+                    marginBottom: "1rem",
+                    textShadow: "0 2px 8px rgba(0,0,0,0.4)",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {model.name}
+                </h4>
+
+                {/* Details grid */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "0.6rem 1.2rem",
+                  }}
+                >
+                  <DetailItem label="HEIGHT" value={model.height} />
+                  <DetailItem label="HAIR" value={model.hair} />
+                  <DetailItem label="EYES" value={model.eyes} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+function DetailItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <span
+        style={{
+          display: "block",
+          fontSize: "0.6rem",
+          fontWeight: 700,
+          letterSpacing: "0.2em",
+          color: "var(--accent-gold)",
+          marginBottom: "0.15rem",
+        }}
+      >
+        {label}
+      </span>
+      <span
+        style={{
+          fontSize: "0.82rem",
+          color: "rgba(255,255,255,0.85)",
+          fontWeight: 400,
+        }}
+      >
+        {value}
+      </span>
+    </div>
   );
 }

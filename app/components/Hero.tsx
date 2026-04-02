@@ -48,33 +48,31 @@ export default function Hero() {
           className="hero-video-placeholder"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         >
-          <source src="/vidio/bg.mp4" type="video/mp4" />
+          <source src="/main/BG.mp4" type="video/mp4" />
         </video>
-        <div className="hero-overlay-heavy" />
-        <div className="hero-overlay-grid" />
       </div>
 
       <div className="page-container hero-content-wrapper">
         <div className="hero-content">
-          <motion.span
+          {/* <motion.span
             className="hero-kicker"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={smoothReveal}
           >
             THE FOURTH FRAME
-          </motion.span>
+          </motion.span> */}
 
-          <motion.h1
+          {/* <motion.h1
             className="hero-title-exaggerated"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={smoothReveal}
           >
             Build the shot before the camera ever rolls.
-          </motion.h1>
+          </motion.h1> */}
 
-          <motion.p
+          {/* <motion.p
             className="hero-subtitle-premium"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,7 +81,7 @@ export default function Hero() {
             Talent, locations, and production logistics under one roof for
             fashion, beauty, and branded editorial work with imagery aligned to
             each production vertical.
-          </motion.p>
+          </motion.p> */}
 
           <motion.div
             className="hero-dual-cta"

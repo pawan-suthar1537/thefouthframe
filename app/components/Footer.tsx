@@ -26,19 +26,44 @@ export default function Footer() {
       <div className="footer-backdrop" aria-hidden="true" />
       <div className="footer-watermark">FOURTH FRAME</div>
 
-      <div className="page-container">
-        {/* Editorial Top Band - Vertically Centered */}
-        <div className="footer-top-band flex-center-vertical">
-          <div className="footer-top-copy">
-            <span className="footer-label-gold accent-line-both">NEXT CAMPAIGN</span>
-            <h2>Build visuals that look premium before production even starts.</h2>
-          </div>
-          <Link href="/contact" className="btn-premium">
-            START PROJECT
-          </Link>
+      {/* Full-width Video CTA Band */}
+      <div className="footer-top-band flex-center-vertical" style={{ position: "relative", overflow: "hidden" }}>
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        >
+          <source src="/main/CTABG.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(135deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.6) 100%)",
+            zIndex: 1,
+          }}
+        />
+        {/* Content */}
+        <div className="footer-top-copy" style={{ position: "relative", zIndex: 2 }}>
+
+          <h2>Build visuals that look premium before production even starts.</h2>
         </div>
 
-        {/* Perfectly Symmetric 5-Column Grid */}
+      </div>
+
+      <div className="page-container">
         <div className="footer-main-layout">
           {/* Column 1: Agency (Left Align) */}
           <div className="footer-nav-col">

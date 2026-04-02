@@ -2,7 +2,7 @@
 
 export default function ContactSection() {
   return (
-    <section className="section bg-beige-light" id="contact">
+    <section className="section bg-white" id="contact">
       <div className="page-container">
         <div className="contact-grid-main">
           <div className="contact-info-panel">
@@ -79,9 +79,7 @@ export default function ContactSection() {
                 <button type="submit" className="btn-premium w-full text-center">
                   SUBMIT ENQUIRY
                 </button>
-                <button type="button" className="btn-outline-gold w-full mt-4">
-                  BOOK A CONSULTATION
-                </button>
+
               </div>
             </form>
           </div>
