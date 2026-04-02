@@ -566,20 +566,48 @@ p {
   color: var(--accent-gold);
 }
 
+/* Animated Hamburger Icon */
+.hamburger-icon {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF; /* High visibility white */
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hamburger-icon.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
 /* Stunning mobile menu */
 .mobile-menu {
   position: absolute;
-  top: calc(100% + 1rem);
-  left: 0;
-  width: 100%;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(172, 148, 117, 0.2);
-  border-radius: 1.5rem;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  overflow: hidden;
+  top: 100%;
+  right: 1.5rem;
+  width: auto;
+  min-width: 200px;
+  padding: 1.5rem 0;
+  background: transparent; /* No white background */
+  z-index: 1001;
 }
 
 .mobile-menu-inner {
@@ -591,47 +619,53 @@ p {
 .mobile-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 0.5rem;
-  border-bottom: 1px solid rgba(172, 148, 117, 0.1);
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
+  justify-content: flex-end;
+  padding: 0.75rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
   font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  text-transform: none;
-  transition: color 0.3s;
+  letter-spacing: -0.01em;
+  color: #FFFFFF; /* High visibility white on transparent */
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  text-align: right;
+  border: none;
 }
 
 .mobile-link span:last-child {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--accent-gold);
-  font-weight: 300;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s;
+  display: none; /* Hide the extra span/arrow for simplicity */
 }
 
 .mobile-link.active,
 .mobile-link:hover {
   color: var(--accent-gold);
+  transform: translateX(-10px);
 }
 
-.mobile-link:hover span:last-child {
-  opacity: 1;
-  transform: translateX(0);
+.mobile-menu-cta {
+  width: fit-content;
+  align-self: flex-end;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.8rem;
+  background: transparent;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  text-align: center;
+  border: 1px solid var(--accent-gold);
 }
 
 .mobile-menu-cta {
   width: 100%;
-  margin-top: 2rem;
-  padding: 1.25rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
   background: var(--bg-dark);
-  color: var(--accent-gold);
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.3em;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   border-radius: 999px;
   text-align: center;
@@ -2587,18 +2621,52 @@ p {
     border-bottom: none;
   }
 
-  .footer-bottom-premium {
+  .footer-main-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .footer-brand-central {
+    grid-row: 1; /* Move brand to the top on mobile */
+    text-align: left;
     align-items: flex-start;
   }
 
-  .editorial-box,
-  .editorial-box:nth-child(2) {
-    flex: 1 1 100%;
+  .logo-text-gold-center {
+    text-align: left;
   }
 
-  .masonry-container {
-    columns: 1;
+  /* Reset all right-aligned footers elements to left for mobile */
+  .footer-nav-col.align-right,
+  .footer-nav-links-v4.align-right,
+  .footer-location-stack-v4.align-right,
+  .footer-location-item-v4.align-right,
+  .footer-social-strip-v4.align-right,
+  .social-link-editorial.align-right {
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
+
+  .footer-location-stack-v4 {
+    align-items: flex-start;
+  }
+
+  .footer-bottom-premium-v4 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  .footer-badges-v4 {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+.masonry-container {
+  columns: 1;
 }
 
 @media (max-width: 560px) {

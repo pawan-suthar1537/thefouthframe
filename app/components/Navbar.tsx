@@ -6,12 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-
   { label: "Services", href: "#services" },
   { label: "Models", href: "#work" },
-  // { label: "Work", href: "#work" },
-  // { label: "Investment", href: "#pricing" },
-  // { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -58,14 +54,20 @@ export default function Navbar() {
             Start Project
           </Link>
 
+          {/* Hamburger Icon */}
           <button
             type="button"
             className="nav-toggle"
             onClick={() => setMobileOpen((value) => !value)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            {mobileOpen ? "Close" : "Menu"}
+            <div className={`hamburger-icon ${mobileOpen ? "open" : ""}`}>
+              <span />
+              <span />
+              <span />
+            </div>
           </button>
         </div>
       </div>
@@ -89,16 +91,16 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                 >
                   <span>{item.label}</span>
-                  <span aria-hidden="true">/</span>
+                  <span aria-hidden="true">&rarr;</span>
                 </Link>
               ))}
-              <Link
+              {/* <Link
                 href="/contact"
                 className="btn-main mobile-menu-cta"
                 onClick={() => setMobileOpen(false)}
               >
-                Let&apos;s Talk
-              </Link>
+                Start Project
+              </Link> */}
             </div>
           </motion.div>
         ) : null}
