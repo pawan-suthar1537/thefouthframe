@@ -51,9 +51,23 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-actions">
-          <Link href={NAV_CTA.href} className="btn-premium nav-cta">
-            {NAV_CTA.label}
-          </Link>
+          {pathname === "/contact" ? (
+            <Link
+              href="/"
+              className="flex items-center justify-center p-2 rounded-full transition-transform hover:-translate-x-1"
+              style={{ color: "#0F0F0F", background: "white", width: "40px", height: "40px" }}
+              aria-label="Go back"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </Link>
+          ) : (
+            <Link href={NAV_CTA.href} className="btn-premium nav-cta">
+              {NAV_CTA.label}
+            </Link>
+          )}
         </div>
       </div>
     </nav>
