@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
-  title: "THE AGENCY FRAME | Luxury Modeling, Talent & Production",
+  title: "THE FOURTH FRAME | Luxury Modeling, Talent & Production",
   description:
     "An ultra-luxury, high-end Modeling, Talent, and Production Agency. Managing the frame, elevating every vision with elite models and prime locations.",
   keywords: [
