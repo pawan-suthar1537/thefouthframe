@@ -4,9 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const agencyNav = [
-  { label: "Services", href: "/" },
-  { label: "Models", href: "/" },
-
+  { label: "Services", href: "/#services" },
+  { label: "Models", href: "/#work" },
 ];
 
 
@@ -71,77 +70,81 @@ export default function Footer() {
       )}
 
       <div className="page-container">
-        <div className="footer-main-layout">
-          {/* Column 1: Agency (Left Align) */}
-          <div className="footer-nav-col">
-            <span className="footer-label-gold">AGENCY</span>
-            <div className="footer-nav-links-v4">
-              {agencyNav.map((link) => (
-                <Link key={link.label} href={link.href} className="footer-nav-link-v4">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Spacer to restore symmetry after removing Quick Links */}
-          <div className="footer-spacer" aria-hidden="true" />
-
-          {/* Column 3: Central Branding (The Anchor - Center Align) */}
-          <div className="footer-brand-central">
-            <Link href="/" className="logo-text-gold-center">
-              We Command the Stage. We Curate the Face
-            </Link>
-            <p className="footer-desc-v4">
-              Premium talent casting for global brands and comprehensive backstage logistics for large-scale fashion shows. We handle the hustle; you take the applause
-            </p>
-            <div className="footer-contact-pills-v4">
-              <a href="mailto:hello@thefourthframe.com" className="footer-pill-v4">
-                hello@thefourthframe.com
+        <div className="footer-main-v5">
+          {/* Left Side: Taglines & Brand Statement */}
+          <div className="footer-left-v5">
+            <h2 className="footer-heading-v5">
+              WE COMMAND <br />
+              THE STAGE. <br />
+              WE CURATE <br />
+              THE FACE
+            </h2>
+            <div className="footer-info-v5">
+              <p className="footer-desc-v5">
+                Premium talent casting for global brands and comprehensive backstage logistics for
+                large-scale fashion shows. We handle the hustle; you take the applause.
+              </p>
+              <a href="mailto:hello@thefourthframe.com" className="footer-email-v5">
+                HELLO@THEFOURTHFRAME.COM
               </a>
             </div>
           </div>
 
-          {/* Column 4: Studio Presence (Right Align) */}
-          <div className="footer-nav-col align-right">
-            <span className="footer-label-gold">STUDIO</span>
-            <div className="footer-location-stack-v4 align-right">
-              {studioPresence.map((location) => (
-                <div key={location.city} className="footer-location-item-v4 align-right">
-                  <strong>{location.city}</strong>
-                  <span>{location.note}</span>
-                </div>
-              ))}
+          {/* Right Side: Navigation Stack */}
+          <div className="footer-right-v5">
+            {/* Socials */}
+            <div className="footer-nav-section-v5">
+              <span className="footer-label-v5">SOCIALS</span>
+              <div className="footer-links-v5">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-link-v5"
+                  >
+                    {social.label}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Column 5: Socials (Right Align) */}
-          <div className="footer-nav-col align-right">
-            <span className="footer-label-gold">SOCIALS</span>
-            <div className="footer-social-strip-v4 align-right">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social-link-editorial align-right"
-                >
-                  {social.label}
-                </a>
-              ))}
+            {/* Studio */}
+            <div className="footer-nav-section-v5">
+              <span className="footer-label-v5">STUDIO</span>
+              <div className="footer-links-v5">
+                {studioPresence.map((location) => (
+                  <div key={location.city} className="footer-location-v5">
+                    <strong>{location.city}</strong>
+                    <span>{location.note}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Agency */}
+            <div className="footer-nav-section-v5">
+              <span className="footer-label-v5">AGENCY</span>
+              <div className="footer-links-v5">
+                {agencyNav.map((link) => (
+                  <Link key={link.label} href={link.href} className="footer-link-v5">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Symmetric Bottom section */}
-        <div className="footer-bottom-premium-v4">
-          <div className="footer-badges-v4">
-            <span className="badge-outline-gold-v4">EST. 2024</span>
-            <span className="badge-outline-gold-v4">PRODUCTION PARTNER</span>
-            <span className="badge-outline-gold-v4">PAN-INDIA</span>
+        <div className="footer-bottom-v5">
+          <div className="footer-badges-v5">
+            <span className="badge-v5">EST. 2024</span>
+            <span className="badge-v5">PRODUCTION PARTNER</span>
+            <span className="badge-v5">PAN-INDIA</span>
           </div>
-          <p className="copyright-text-v4">
+          <p className="copyright-v5">
             &copy; {year} THE AGENCY FRAME. OPERATED BY THE FOURTH FRAME.
           </p>
         </div>

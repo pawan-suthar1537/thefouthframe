@@ -6,8 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Services", href: "#services" },
-  { label: "Models", href: "#work" },
+  { label: "Services", href: "/#services" },
+  { label: "Models", href: "/#work" },
 ];
 
 export default function Navbar() {
