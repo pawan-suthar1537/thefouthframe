@@ -6,9 +6,9 @@ import { type FormEvent, useState } from "react";
 const contactCards = [
   {
     label: "Enquiries",
-    title: "hello@thefourthframe.com",
+    title: "hellothefourthframe@gmail.com",
     description: "Best for shoot requests, campaign conversations, and brand collaborations.",
-    href: "mailto:hello@thefourthframe.com",
+    href: "mailto:hellothefourthframe@gmail.com",
   },
   {
     label: "Instagram",
@@ -30,6 +30,38 @@ export default function ContactPage() {
 
   return (
     <>
+      <section className="footer-top-band flex-center-vertical" style={{ position: "relative", overflow: "hidden", minHeight: "80vh" }}>
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        >
+          <source src="/main/BG.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+
+            zIndex: 1,
+          }}
+        />
+        {/* Content */}
+
+      </section>
+
       <section className="page-hero page-hero-grid">
         <motion.div
           initial={{ opacity: 0, y: 26 }}

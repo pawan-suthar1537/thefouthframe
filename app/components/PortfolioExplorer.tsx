@@ -15,28 +15,21 @@ const models = [
   },
   {
     id: 2,
-    name: "Iri",
+    name: "Tamannah",
     height: '162 cm (5\'4")',
     hair: "Dark Brown",
     eyes: "Dark Brown",
-    image: "/main/M1.jpeg",
+    image: "/main/M3.png",
   },
   {
     id: 3,
-    name: "Iri",
-    height: '162 cm (5\'4")',
-    hair: "Dark Brown",
+    name: "Bhavika Jain ",
+    height: '167 cm (5\'5")',
+    hair: "BLack",
     eyes: "Dark Brown",
-    image: "/main/M1.jpeg",
+    image: "/main/M4.png",
   },
-  {
-    id: 4,
-    name: "Iri",
-    height: '162 cm (5\'4")',
-    hair: "Dark Brown",
-    eyes: "Dark Brown",
-    image: "/main/M1.jpeg",
-  },
+
 ];
 
 const cardReveal = {

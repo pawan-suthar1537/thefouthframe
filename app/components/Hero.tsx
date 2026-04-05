@@ -40,15 +40,28 @@ export default function Hero() {
   return (
     <section className="hero-fullscreen">
       <div className="hero-video-container" aria-hidden="true">
+        {/* Desktop Video */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="hero-video-placeholder"
+          className="hero-video-placeholder hidden md:block"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         >
-          <source src="/main/BG.mp4" type="video/mp4" />
+          <source src="/main/main.mp4" type="video/mp4" />
+        </video>
+
+        {/* Mobile Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hero-video-placeholder block md:hidden"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        >
+          <source src="/main/mianveritical.mp4" type="video/mp4" />
         </video>
       </div>
 

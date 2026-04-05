@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const agencyNav = [
   { label: "Services", href: "/" },
@@ -20,6 +23,8 @@ const socialLinks = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const pathname = usePathname();
+  const isContactPage = pathname === "/contact";
 
   return (
     <footer className="footer footer-reimagined">
@@ -27,41 +32,43 @@ export default function Footer() {
       <div className="footer-watermark">FOURTH FRAME</div>
 
       {/* Full-width Video CTA Band */}
-      <div className="footer-top-band flex-center-vertical" style={{ position: "relative", overflow: "hidden" }}>
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            zIndex: 0,
-          }}
-        >
-          <source src="/main/CTABG.mp4" type="video/mp4" />
-        </video>
-        {/* Dark overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(135deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.6) 100%)",
-            zIndex: 1,
-          }}
-        />
-        {/* Content */}
-        <div className="footer-top-copy" style={{ position: "relative", zIndex: 2 }}>
+      {!isContactPage && (
+        <div className="footer-top-band flex-center-vertical" style={{ position: "relative", overflow: "hidden" }}>
+          {/* Background Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              zIndex: 0,
+            }}
+          >
+            <source src="/main/CTABG.mp4" type="video/mp4" />
+          </video>
+          {/* Dark overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(135deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.6) 100%)",
+              zIndex: 1,
+            }}
+          />
+          {/* Content */}
+          <div className="footer-top-copy" style={{ position: "relative", zIndex: 2 }}>
 
-          <h2>Build visuals that look premium before production even starts.</h2>
+            <h2>Build visuals that look premium before production even starts.</h2>
+          </div>
+
         </div>
-
-      </div>
+      )}
 
       <div className="page-container">
         <div className="footer-main-layout">
@@ -83,11 +90,10 @@ export default function Footer() {
           {/* Column 3: Central Branding (The Anchor - Center Align) */}
           <div className="footer-brand-central">
             <Link href="/" className="logo-text-gold-center">
-              THE <br /> AGENCY <br /> FRAME
+              We Command the Stage. We Curate the Face
             </Link>
             <p className="footer-desc-v4">
-              A visual production partner for campaigns that need
-              sharper execution.
+              Premium talent casting for global brands and comprehensive backstage logistics for large-scale fashion shows. We handle the hustle; you take the applause
             </p>
             <div className="footer-contact-pills-v4">
               <a href="mailto:hello@thefourthframe.com" className="footer-pill-v4">

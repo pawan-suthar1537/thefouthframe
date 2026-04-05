@@ -51,7 +51,7 @@ export default function Navbar() {
 
         <div className="nav-actions">
           <Link href="/contact" className="btn-premium nav-cta" onClick={() => setMobileOpen(false)}>
-            Start Project
+            Let’s Build the Frame
           </Link>
 
           {/* Hamburger Icon */}
