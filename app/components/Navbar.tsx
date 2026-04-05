@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { scrollToHash } from "../lib/scrollToHash";
 
 const navItems = [
   { label: "Services", href: "/#services" },
@@ -11,18 +13,29 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!isHomePage || !href.startsWith("/#")) {
+      return;
+    }
+
+    event.preventDefault();
+    window.history.replaceState(null, "", href);
+    scrollToHash(href.slice(1));
+  };
 
   return (
     <nav className="navbar">
       <div className="navbar-shell">
-        <Link
-          href="/"
-          className="logo-brand"
-          aria-label="THE AGENCY FRAME home"
-        >
-          <img
+        <Link href="/" className="logo-brand" aria-label="THE AGENCY FRAME home">
+          <Image
             src="/images/logo.jpg"
             alt="The Agency Frame Logo"
+            width={48}
+            height={48}
+            priority
+            sizes="48px"
             style={{ borderRadius: "50%", objectFit: "cover" }}
           />
         </Link>
@@ -32,7 +45,8 @@ export default function Navbar() {
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`nav-link ${pathname === item.href ? "active" : ""}`}
+                className="nav-link"
+                onClick={(event) => handleNavClick(event, item.href)}
               >
                 {item.label}
               </Link>
@@ -42,7 +56,7 @@ export default function Navbar() {
 
         <div className="nav-actions">
           <Link href="/contact" className="btn-premium nav-cta">
-            Let’s Build the Frame
+            Let&apos;s Build the Frame
           </Link>
         </div>
       </div>

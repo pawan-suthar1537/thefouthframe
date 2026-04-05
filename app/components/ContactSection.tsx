@@ -14,7 +14,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="section bg-white" id="contact">
+    <section className="section bg-white anchor-section" id="contact">
       <div className="page-container">
         <div className="contact-grid-main">
           <div className="contact-info-panel">
@@ -36,6 +36,7 @@ export default function ContactSection() {
                 <a
                   href="https://instagram.com/the_fourthframe_"
                   target="_blank"
+                  rel="noreferrer"
                   className="contact-value"
                 >
                   @the_fourthframe_
@@ -138,4 +139,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

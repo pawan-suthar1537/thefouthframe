@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import HashScrollManager from "./components/HashScrollManager";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className="antialiased">
+        <HashScrollManager />
         <Navbar />
         {children}
         <Footer />

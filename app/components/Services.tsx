@@ -52,7 +52,7 @@ export default function Services() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section bg-white" id="services" ref={ref}>
+    <section className="section bg-white anchor-section" id="services" ref={ref}>
       <div className="page-container">
         <div className="section-center mb-16">
           <motion.span

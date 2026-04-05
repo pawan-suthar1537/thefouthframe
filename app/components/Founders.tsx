@@ -34,7 +34,7 @@ export default function Founders() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section bg-white" id="founders" ref={ref}>
+    <section className="section bg-white anchor-section" id="founders" ref={ref}>
       <div className="page-container">
         <div className="section-center mb-16">
           <motion.span
@@ -76,9 +76,6 @@ export default function Founders() {
                   src={founder.image}
                   alt={founder.name}
                   fill
-                  loading="eager"
-                  priority
-                  quality={100}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
