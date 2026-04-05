@@ -3,24 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
-
-const founders = [
-  {
-    name: "Co-Founder & Producer",
-    role: "PRODUCER",
-    image: "/main/COP.jpeg",
-  },
-  {
-    name: "Casting Manager",
-    role: "CASTING",
-    image: "/main/CM.jpeg",
-  },
-  {
-    name: "Co-Founder & DOP",
-    role: "DIRECTOR OF PHOTOGRAPHY",
-    image: "/main/CFD.jpeg",
-  },
-];
+import { FOUNDERS, FOUNDERS_SECTION } from "../lib/constants";
 
 const cardReveal = {
   type: "spring",
@@ -42,7 +25,7 @@ export default function Founders() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            LEADERSHIP
+            {FOUNDERS_SECTION.label}
           </motion.span>
           <motion.h2
             className="section-title"
@@ -50,13 +33,13 @@ export default function Founders() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ ...cardReveal, delay: 0.1 }}
           >
-            The Faces Behind{" "}
-            <span className="accent-text" style={{ fontStyle: "italic" }}>The Fourth Frame</span>
+            {FOUNDERS_SECTION.title}{" "}
+            <span className="accent-text" style={{ fontStyle: "italic" }}>{FOUNDERS_SECTION.titleAccent}</span>
           </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12" style={{ perspective: "1200px" }}>
-          {founders.map((founder, i) => (
+          {FOUNDERS.map((founder, i) => (
             <motion.div
               key={founder.role}
               className="group relative h-[520px] w-full overflow-hidden cursor-pointer"

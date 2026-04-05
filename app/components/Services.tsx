@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
-import { serviceImages } from "../lib/imageLinks";
+import { SERVICES, SERVICES_SECTION } from "../lib/constants";
 
 const cardReveal = {
   type: "spring",
@@ -11,41 +11,6 @@ const cardReveal = {
   damping: 22,
   mass: 0.8,
 } as const;
-
-const agencyServices = [
-  {
-    index: "01",
-    title: "TALENT CURATION",
-    description:
-      "Our roster features world-class models, artists, and creators. We handle end-to-end booking management, career strategy, and elite placement for global campaigns.",
-    image: serviceImages.talent,
-    details: "ROSTER PLACEMENT | BOOKING | STRATEGY",
-  },
-  {
-    index: "02",
-    title: "PRODUCTION MANAGEMENT",
-    description:
-      "From conceptualization to post-production, we manage every frame. Our team handles logistics, crew coordination, and technical execution for high-end fashion and commercial sets.",
-    image: serviceImages.production,
-    details: "SCHEDULING | LOGISTICS | CREW",
-  },
-  {
-    index: "03",
-    title: "LOCATION SERVICES",
-    description:
-      "Access our exclusive database of unique shooting environments. We provide site scouting, permit management, and on-site logistics for minimalist studios and luxury estates.",
-    image: serviceImages.locations,
-    details: "SITE SCOUTING | PERMITS | ACCESS",
-  },
-  {
-    index: "04",
-    title: "LOCATION SERVICESs",
-    description:
-      "Access our exclusive database of unique shooting environments. We provide site scouting, permit management, and on-site logistics for minimalist studios and luxury estates.",
-    image: serviceImages.locations,
-    details: "SITE SCOUTING | PERMITS | ACCESS",
-  },
-];
 
 export default function Services() {
   const ref = useRef(null);
@@ -60,7 +25,7 @@ export default function Services() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            OUR EXPERTISE
+            {SERVICES_SECTION.label}
           </motion.span>
           <motion.h2
             className="section-title"
@@ -68,13 +33,13 @@ export default function Services() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ ...cardReveal, delay: 0.1 }}
           >
-            Integrated Production &{" "}
-            <span className="metallic-gold">Talent Management</span>
+            {SERVICES_SECTION.title}{" "}
+            <span className="metallic-gold">{SERVICES_SECTION.titleAccent}</span>
           </motion.h2>
         </div>
 
         <div className="services-grid-premium">
-          {agencyServices.map((s, i) => (
+          {SERVICES.map((s, i) => (
             <motion.div
               key={s.title}
               className="service-card-premium"

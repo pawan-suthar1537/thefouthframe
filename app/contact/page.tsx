@@ -30,8 +30,8 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="footer-top-band flex-center-vertical" style={{ position: "relative", overflow: "hidden", minHeight: "80vh" }}>
-        {/* Background Video */}
+      {/* <section className="footer-top-band flex-center-vertical" style={{ position: "relative", overflow: "hidden", minHeight: "80vh" }}>
+      
         <video
           autoPlay
           loop
@@ -49,7 +49,7 @@ export default function ContactPage() {
         >
           <source src="/main/BG.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay */}
+       
         <div
           style={{
             position: "absolute",
@@ -58,9 +58,9 @@ export default function ContactPage() {
             zIndex: 1,
           }}
         />
-        {/* Content */}
+       
 
-      </section>
+      </section> */}
 
       <section className="page-hero page-hero-grid">
         <motion.div

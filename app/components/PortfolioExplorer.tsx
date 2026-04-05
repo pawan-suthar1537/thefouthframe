@@ -3,34 +3,7 @@
 import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
-
-const models = [
-  {
-    id: 1,
-    name: "Iri",
-    height: '162 cm (5\'4")',
-    hair: "Dark Brown",
-    eyes: "Dark Brown",
-    image: "/main/M1.jpeg",
-  },
-  {
-    id: 2,
-    name: "Tamannah",
-    height: '162 cm (5\'4")',
-    hair: "Dark Brown",
-    eyes: "Dark Brown",
-    image: "/main/M3.png",
-  },
-  {
-    id: 3,
-    name: "Bhavika Jain ",
-    height: '167 cm (5\'5")',
-    hair: "BLack",
-    eyes: "Dark Brown",
-    image: "/main/M4.png",
-  },
-
-];
+import { MODELS, MODELS_SECTION } from "../lib/constants";
 
 const cardReveal = {
   type: "spring",
@@ -52,7 +25,7 @@ export default function PortfolioExplorer() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            OUR TALENT
+            {MODELS_SECTION.label}
           </motion.span>
           <motion.h2
             className="section-title"
@@ -60,15 +33,15 @@ export default function PortfolioExplorer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ ...cardReveal, delay: 0.1 }}
           >
-            Models{" "}
+            {MODELS_SECTION.title}{" "}
             <span className="accent-text" style={{ fontStyle: "italic" }}>
-              Roster
+              {MODELS_SECTION.titleAccent}
             </span>
           </motion.h2>
         </div>
 
         <div className="models-grid">
-          {models.map((model, i) => (
+          {MODELS.map((model, i) => (
             <motion.div
               key={model.id}
               className="group"

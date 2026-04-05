@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
+import {
+  SITE,
+  SOCIAL_LINKS,
+  CONTACT_SECTION,
+  CONTACT_FORM_INTERESTS,
+} from "../lib/constants";
 
 export default function ContactSection() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -18,35 +24,35 @@ export default function ContactSection() {
       <div className="page-container">
         <div className="contact-grid-main">
           <div className="contact-info-panel">
-            <span className="section-label">GET IN TOUCH</span>
+            <span className="section-label">{CONTACT_SECTION.label}</span>
             <h2 className="section-title mb-12">
-              CONNECT WITH <br />
-              <span className="metallic-gold">THE FRAME</span>
+              {CONTACT_SECTION.title} <br />
+              <span className="metallic-gold">{CONTACT_SECTION.titleAccent}</span>
             </h2>
 
             <div className="contact-links-list">
               <div className="contact-link-item">
                 <span className="tiny-label">ENQUIRIES</span>
-                <a href="mailto:hellothefourthframe@gmail.com" className="contact-value">
-                  hellothefourthframe@gmail.com
+                <a href={`mailto:${SITE.email}`} className="contact-value">
+                  {SITE.email}
                 </a>
               </div>
               <div className="contact-link-item">
                 <span className="tiny-label">INSTAGRAM</span>
                 <a
-                  href="https://instagram.com/the_fourthframe_"
+                  href={SOCIAL_LINKS[0].href}
                   target="_blank"
                   rel="noreferrer"
                   className="contact-value"
                 >
-                  @the_fourthframe_
+                  {SOCIAL_LINKS[0].handle}
                 </a>
               </div>
               <div className="contact-link-item">
                 <span className="tiny-label">LOCATION</span>
                 <p className="contact-value">
-                  Luxury Production Studio, <br />
-                  Bikaner, India
+                  {SITE.location.studio}, <br />
+                  {SITE.location.city}, {SITE.location.country}
                 </p>
               </div>
             </div>
@@ -69,10 +75,9 @@ export default function ContactSection() {
                 <div className="input-group">
                   <label>INTERESTED IN</label>
                   <select>
-                    <option>Talent Booking</option>
-                    <option>Production Management</option>
-                    <option>Location Scouting</option>
-                    <option>Full Agency Service</option>
+                    {CONTACT_FORM_INTERESTS.map((interest) => (
+                      <option key={interest}>{interest}</option>
+                    ))}
                   </select>
                 </div>
                 <div className="input-group">
@@ -88,7 +93,7 @@ export default function ContactSection() {
 
               <div className="form-actions mt-8">
                 <button type="submit" className="btn-premium w-full text-center">
-                  Book Your Talent
+                  {CONTACT_SECTION.submitButtonText}
                 </button>
               </div>
             </form>
@@ -115,17 +120,19 @@ export default function ContactSection() {
             >
               <div className="relative w-32 h-32 overflow-hidden" style={{ borderRadius: "50%" }}>
                 <Image
-                  src="/images/logo.jpg"
-                  alt="The Agency Frame Logo"
+                  src={SITE.logo}
+                  alt={`${SITE.name} Logo`}
                   fill
                   className="object-cover"
                 />
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-3xl font-serif" style={{ color: "var(--bg-dark)" }}>Submission Successful</h3>
+                <h3 className="text-3xl font-serif" style={{ color: "var(--bg-dark)" }}>
+                  {CONTACT_SECTION.successTitle}
+                </h3>
                 <p className="text-gray-600 leading-relaxed font-sans text-xl">
-                  Your query has been submitted and our team will connect with you soon.
+                  {CONTACT_SECTION.successMessage}
                 </p>
               </div>
 

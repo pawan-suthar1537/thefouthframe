@@ -1,3 +1,5 @@
+import { HERO_MEDIA } from "../lib/constants";
+
 export default function Hero() {
   return (
     <section className="hero-fullscreen">
@@ -12,10 +14,10 @@ export default function Hero() {
         >
           <source
             media="(max-width: 767px)"
-            src="/main/mianveritical.mp4"
+            src={HERO_MEDIA.mobileVideo}
             type="video/mp4"
           />
-          <source src="/main/main.mp4" type="video/mp4" />
+          <source src={HERO_MEDIA.desktopVideo} type="video/mp4" />
         </video>
       </div>
 

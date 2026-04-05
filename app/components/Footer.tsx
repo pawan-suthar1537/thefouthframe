@@ -5,17 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { scrollToHash } from "../lib/scrollToHash";
-
-const agencyNav = [
-  { label: "Services", href: "/#services" },
-  { label: "Models", href: "/#work" },
-];
-
-const studioPresence = [{ city: "Bikaner", note: "Primary Base" }];
-
-const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/the_fourthframe_/" },
-];
+import { SITE, NAV_ITEMS, SOCIAL_LINKS, FOOTER } from "../lib/constants";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -93,7 +83,7 @@ export default function Footer() {
                 zIndex: 0,
               }}
             >
-              <source src="/main/CTABG.mp4" type="video/mp4" />
+              <source src={FOOTER.ctaVideoSrc} type="video/mp4" />
             </video>
           ) : (
             <div
@@ -118,7 +108,7 @@ export default function Footer() {
           />
 
           <div className="footer-top-copy" style={{ position: "relative", zIndex: 2 }}>
-            <h2>Build visuals that look premium before production even starts.</h2>
+            <h2>{FOOTER.ctaHeadline}</h2>
           </div>
         </div>
       )}
@@ -126,20 +116,11 @@ export default function Footer() {
       <div className="page-container">
         <div className="footer-main-v5">
           <div className="footer-left-v5">
-            <h2 className="footer-heading-v5">
-              WE COMMAND <br />
-              THE STAGE. <br />
-              WE CURATE <br />
-              THE FACE
-            </h2>
+            <h2 className="footer-heading-v5">{FOOTER.heading[0]}<br />{FOOTER.heading[1]}<br />{FOOTER.heading[2]}<br />{FOOTER.heading[3]}</h2>
             <div className="footer-info-v5">
-              <p className="footer-desc-v5">
-                Premium talent casting for global brands and comprehensive backstage
-                logistics for large-scale fashion shows. We handle the hustle; you take
-                the applause.
-              </p>
-              <a href="mailto:hello@thefourthframe.com" className="footer-email-v5">
-                HELLO@THEFOURTHFRAME.COM
+              <p className="footer-desc-v5">{FOOTER.description}</p>
+              <a href={SITE.footerEmailHref} className="footer-email-v5">
+                {SITE.footerEmail}
               </a>
             </div>
           </div>
@@ -148,7 +129,7 @@ export default function Footer() {
             <div className="footer-nav-section-v5">
               <span className="footer-label-v5">SOCIALS</span>
               <div className="footer-links-v5">
-                {socialLinks.map((social) => (
+                {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
@@ -165,7 +146,7 @@ export default function Footer() {
             <div className="footer-nav-section-v5">
               <span className="footer-label-v5">STUDIO</span>
               <div className="footer-links-v5">
-                {studioPresence.map((location) => (
+                {FOOTER.studioLocations.map((location) => (
                   <div key={location.city} className="footer-location-v5">
                     <strong>{location.city}</strong>
                     <span>{location.note}</span>
@@ -177,7 +158,7 @@ export default function Footer() {
             <div className="footer-nav-section-v5">
               <span className="footer-label-v5">AGENCY</span>
               <div className="footer-links-v5">
-                {agencyNav.map((link) => (
+                {NAV_ITEMS.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
@@ -194,12 +175,12 @@ export default function Footer() {
 
         <div className="footer-bottom-v5">
           <div className="footer-badges-v5">
-            <span className="badge-v5">EST. 2024</span>
-            <span className="badge-v5">PRODUCTION PARTNER</span>
-            <span className="badge-v5">PAN-INDIA</span>
+            {SITE.badges.map((badge) => (
+              <span key={badge} className="badge-v5">{badge}</span>
+            ))}
           </div>
           <p className="copyright-v5">
-            &copy; {year} THE AGENCY FRAME. OPERATED BY THE FOURTH FRAME.
+            &copy; {year} {SITE.name}. OPERATED BY {SITE.operatedBy}.
           </p>
         </div>
       </div>

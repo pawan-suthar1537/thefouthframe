@@ -5,11 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { scrollToHash } from "../lib/scrollToHash";
-
-const navItems = [
-  { label: "Services", href: "/#services" },
-  { label: "Models", href: "/#work" },
-];
+import { SITE, NAV_ITEMS, NAV_CTA } from "../lib/constants";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -28,10 +24,10 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-shell">
-        <Link href="/" className="logo-brand" aria-label="THE AGENCY FRAME home">
+        <Link href="/" className="logo-brand" aria-label={`${SITE.name} home`}>
           <Image
-            src="/images/logo.jpg"
-            alt="The Agency Frame Logo"
+            src={SITE.logo}
+            alt={`${SITE.name} Logo`}
             width={48}
             height={48}
             priority
@@ -41,7 +37,7 @@ export default function Navbar() {
         </Link>
 
         <ul className="nav-links">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <li key={item.label}>
               <Link
                 href={item.href}
@@ -55,8 +51,8 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-actions">
-          <Link href="/contact" className="btn-premium nav-cta">
-            Let&apos;s Build the Frame
+          <Link href={NAV_CTA.href} className="btn-premium nav-cta">
+            {NAV_CTA.label}
           </Link>
         </div>
       </div>
