@@ -1,6 +1,7 @@
 "use client";
 
 import type { MouseEvent } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,6 +11,20 @@ import { SITE, NAV_ITEMS, NAV_CTA } from "../lib/constants";
 export default function Navbar() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial scroll position
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isHomePage || !href.startsWith("/#")) {
@@ -21,8 +36,11 @@ export default function Navbar() {
     scrollToHash(href.slice(1));
   };
 
+  // On non-home pages, we always want the 'scrolled' styling so text is visible on white background
+  const navClass = `navbar ${!isHomePage || isScrolled ? "scrolled" : ""}`;
+
   return (
-    <nav className="navbar">
+    <nav className={navClass}>
       <div className="navbar-shell">
         <Link href="/" className="logo-brand" aria-label={`${SITE.name} home`}>
           <Image
