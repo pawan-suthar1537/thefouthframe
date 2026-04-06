@@ -163,10 +163,10 @@ export const MODELS = [
   },
   {
     id: 4,
-    name: "Boy",
-    height: '167 cm (5\'5")',
+    name: "Zuber mirza",
+    height: '180 cm (5\'9")',
     hair: "Black",
-    eyes: "Dark Brown",
+    eyes: "Black",
     image: "/main/M5.png",
   },
 ] as const;
