@@ -85,10 +85,10 @@ export const SERVICE_IMAGES = {
   talent: unsplash("1610296669228-602fa827fc1f", 1200, 1200),
   production: unsplash("1583939003579-730e3918a45a", 1200, 1200),
   locations: unsplash("1494526585095-c41746248156", 1200, 1200),
-  backstage: "/main/S2.jpeg",
+  backstage: "/main/S3.jpeg",
   brandShoot: "/main/S1.jpeg",
   editors: "/main/S3.jpeg",
-  bts: "/main/S1.jpeg",
+  bts: "/main/S2.jpeg",
 } as const;
 
 export const SERVICES_SECTION = {
