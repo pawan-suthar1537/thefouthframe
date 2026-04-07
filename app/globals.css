@@ -1275,9 +1275,217 @@ p {
   gap: 2rem;
 }
 
+.service-showcase-card {
+  position: relative;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  border: 0;
+  outline: none;
+  background: #0a0a0a;
+  box-shadow: var(--shadow-premium);
+  will-change: transform;
+  transform: translateZ(0);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.service-showcase-card:hover {
+  box-shadow: var(--shadow-premium), var(--shadow-gold);
+}
+
+.service-flip {
+  position: relative;
+  height: 520px;
+  perspective: 1200px;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.service-flip-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.service-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: inherit;
+  background: #0a0a0a;
+}
+
+.service-front {
+  transform: rotateY(0deg);
+}
+
+.service-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(10, 10, 10, 0.92));
+}
+
+.service-media {
+  position: absolute;
+  inset: 0;
+}
+
+.service-showcase-image {
+  object-fit: cover;
+  transition: transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.service-showcase-card:hover .service-showcase-image {
+  transform: scale(1.05);
+}
+
+.service-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.55) 45%, rgba(10, 10, 10, 0.12) 100%);
+}
+
+.service-showcase-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.2em;
+  color: var(--accent-gold);
+}
+
+.service-front-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 6.5rem 2.5rem 2.6rem 2.5rem;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.7) 55%, transparent 100%);
+}
+
+.service-showcase-kicker {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(172, 148, 117, 0.92);
+}
+
+.service-showcase-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.service-front-mobile-details {
+  display: none;
+}
+
+.service-showcase-desc,
+.service-back-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 1rem;
+}
+
+.service-showcase-meta,
+.service-back-meta {
+  margin-top: 1.1rem;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.service-back-shell {
+  height: 100%;
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.service-back-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.98);
+  margin-top: 0.35rem;
+}
+
+.service-showcase-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.service-showcase-list li {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.service-showcase-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: rgba(172, 148, 117, 0.9);
+}
+
+/* Flip only on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+  .service-showcase-card:hover .service-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Mobile: show all details on front, disable flip */
+@media (max-width: 768px) {
+  .service-flip {
+    height: 560px;
+  }
+
+  .service-flip-inner {
+    transform: none !important;
+  }
+
+  .service-back {
+    display: none;
+  }
+
+  .service-front-mobile-details {
+    display: block;
+    margin-top: 1.15rem;
+  }
+}
+
 .service-card-premium {
   position: relative;
-  background: var(--bg-primary);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.96) 0%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
   border: 1px solid var(--border);
   border-radius: 1.6rem;
   overflow: hidden;
@@ -1312,7 +1520,7 @@ p {
 .service-visual-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
   z-index: 1;
 }
 
@@ -1339,13 +1547,13 @@ p {
   font-size: 1.6rem;
   letter-spacing: 0.05em;
   margin-bottom: 1.25rem;
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.98);
 }
 
 .service-card-desc {
   font-size: 1rem;
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 2rem;
   font-weight: 300;
 }

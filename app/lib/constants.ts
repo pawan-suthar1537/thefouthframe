@@ -85,6 +85,10 @@ export const SERVICE_IMAGES = {
   talent: unsplash("1610296669228-602fa827fc1f", 1200, 1200),
   production: unsplash("1583939003579-730e3918a45a", 1200, 1200),
   locations: unsplash("1494526585095-c41746248156", 1200, 1200),
+  backstage: unsplash("1529333166437-7750a6dd5a70", 1200, 1200),
+  brandShoot: unsplash("1529333166437-7750a6dd5a70", 1200, 1200),
+  editors: unsplash("1515378791036-0648a3ef77b2", 1200, 1200),
+  bts: unsplash("1526948128573-703ee1aeb6fa", 1200, 1200),
 } as const;
 
 export const SERVICES_SECTION = {
@@ -96,35 +100,50 @@ export const SERVICES_SECTION = {
 export const SERVICES = [
   {
     index: "01",
-    title: "TALENT CURATION",
+    title: "BACKSTAGE",
     description:
-      "Our roster features world-class models, artists, and creators. We handle end-to-end booking management, career strategy, and elite placement for global campaigns.",
-    image: SERVICE_IMAGES.talent,
-    details: "ROSTER PLACEMENT | BOOKING | STRATEGY",
+      "Complete backstage support to keep the show running smoothly — from team setup to choreography coordination.",
+    image: SERVICE_IMAGES.backstage,
+    details: "TEAM | COORDINATION | CHOREOGRAPHY",
+    includes: [
+      "Provide a professional team",
+      "Provide a professional coordinator & choreographer",
+    ],
   },
   {
     index: "02",
-    title: "PRODUCTION MANAGEMENT",
+    title: "BRAND SHOOT",
     description:
-      "From conceptualization to post-production, we manage every frame. Our team handles logistics, crew coordination, and technical execution for high-end fashion and commercial sets.",
-    image: SERVICE_IMAGES.production,
-    details: "SCHEDULING | LOGISTICS | CREW",
+      "End-to-end brand shoot execution — talent, setup, and on-ground creative support for premium results.",
+    image: SERVICE_IMAGES.brandShoot,
+    details: "MODELS | LOCATION | MAKEUP",
+    includes: [
+      "Provide models",
+      "Provide location & studio",
+      "Provide makeup artist",
+    ],
   },
   {
     index: "03",
-    title: "LOCATION SERVICES",
+    title: "PROFESSIONAL EDITORS",
     description:
-      "Access our exclusive database of unique shooting environments. We provide site scouting, permit management, and on-site logistics for minimalist studios and luxury estates.",
-    image: SERVICE_IMAGES.locations,
-    details: "SITE SCOUTING | PERMITS | ACCESS",
+      "Editing that matches your brand’s pace and polish — from short-form education to full event storytelling.",
+    image: SERVICE_IMAGES.editors,
+    details: "REELS | SHORTS | EVENT FILMS",
+    includes: [
+      "Educational reel",
+      "Pre-wedding short song",
+      "Complete event reel",
+    ],
   },
   {
     index: "04",
-    title: "LOCATION SERVICESs",
+    title: "BTS MAN",
     description:
-      "Access our exclusive database of unique shooting environments. We provide site scouting, permit management, and on-site logistics for minimalist studios and luxury estates.",
-    image: SERVICE_IMAGES.locations,
-    details: "SITE SCOUTING | PERMITS | ACCESS",
+      "Dedicated behind-the-scenes coverage to capture the process and energy on set — perfect for social-first content.",
+    image: SERVICE_IMAGES.bts,
+    details: "ON-SET | STORY | SOCIAL",
+    includes: ["Behind-the-scenes capture & coverage"],
   },
 ] as const;
 
