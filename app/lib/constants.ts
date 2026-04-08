@@ -87,7 +87,7 @@ export const SERVICE_IMAGES = {
   locations: unsplash("1494526585095-c41746248156", 1200, 1200),
   backstage: "/main/S3.jpeg",
   brandShoot: "/main/S1.jpeg",
-  editors: "/main/S3.jpeg",
+  editors: "/main/S4.jpeg",
   bts: "/main/S2.jpeg",
 } as const;
 
@@ -218,6 +218,16 @@ export const FOOTER = {
   heading: ["WE COMMAND", "THE STAGE.", "WE CURATE", "THE FACE"],
   description:
     "Premium talent casting for global brands and comprehensive backstage logistics for large-scale fashion shows. We handle the hustle; you take the applause.",
+  team: {
+    title: "MAIN TEAM FOURTHFRAME",
+    marketing: "MARKETING HANDLE BY ZAYRAGENCY",
+    members: [
+      { name: "AYAN", role: "THEME DIRECTOR" },
+      { name: "REHAN", role: "D.O.V" },
+      { name: "TANISHA", role: "CASTING DIRECTOR & CHOREOGRAPHER" },
+      { name: "AMIT", role: "BTS MAN" },
+    ],
+  },
   studioLocations: [{ city: "Bikaner", note: "Primary Base" }],
 } as const;
 

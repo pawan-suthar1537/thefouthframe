@@ -119,6 +119,24 @@ export default function Footer() {
             <h2 className="footer-heading-v5">{FOOTER.heading[0]}<br />{FOOTER.heading[1]}<br />{FOOTER.heading[2]}<br />{FOOTER.heading[3]}</h2>
             <div className="footer-info-v5">
               <p className="footer-desc-v5">{FOOTER.description}</p>
+              
+              <div className="footer-team-section" style={{ marginTop: '2.5rem', marginBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <span className="footer-label-v5" style={{ color: 'var(--accent-gold)' }}>
+                  {FOOTER.team.title}
+                </span>
+                <div style={{ display: 'grid', gap: '0.6rem' }}>
+                  {FOOTER.team.members.map((member) => (
+                    <div key={member.name} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                      <strong style={{ fontSize: '0.85rem', color: '#fff', letterSpacing: '0.05em' }}>{member.name}</strong>
+                      <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em' }}>— {member.role}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.15em', marginTop: '0.5rem' }}>
+                  {FOOTER.team.marketing}
+                </div>
+              </div>
+
               <a href={SITE.footerEmailHref} className="footer-email-v5">
                 {SITE.footerEmail}
               </a>
