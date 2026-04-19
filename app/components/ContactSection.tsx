@@ -3,19 +3,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
-import {
-  SITE,
-  SOCIAL_LINKS,
-  CONTACT_SECTION,
-  CONTACT_FORM_INTERESTS,
-} from "../lib/constants";
+import type { SiteData, SocialLink, ContactSectionData } from "../lib/types";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  site: SiteData;
+  socialLinks: SocialLink[];
+  contactSection: ContactSectionData;
+  contactFormInterests: string[];
+}
+
+export default function ContactSection({
+  site,
+  socialLinks,
+  contactSection,
+  contactFormInterests,
+}: ContactSectionProps) {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
     setShowSuccessModal(true);
   };
 
@@ -24,35 +30,37 @@ export default function ContactSection() {
       <div className="page-container">
         <div className="contact-grid-main">
           <div className="contact-info-panel">
-            <span className="section-label">{CONTACT_SECTION.label}</span>
+            <span className="section-label">{contactSection.label}</span>
             <h2 className="section-title mb-12">
-              {CONTACT_SECTION.title} <br />
-              <span className="metallic-gold">{CONTACT_SECTION.titleAccent}</span>
+              {contactSection.title} <br />
+              <span className="metallic-gold">{contactSection.titleAccent}</span>
             </h2>
 
             <div className="contact-links-list">
               <div className="contact-link-item">
                 <span className="tiny-label">ENQUIRIES</span>
-                <a href={`mailto:${SITE.email}`} className="contact-value">
-                  {SITE.email}
+                <a href={`mailto:${site.email}`} className="contact-value">
+                  {site.email}
                 </a>
               </div>
-              <div className="contact-link-item">
-                <span className="tiny-label">INSTAGRAM</span>
-                <a
-                  href={SOCIAL_LINKS[0].href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-value"
-                >
-                  {SOCIAL_LINKS[0].handle}
-                </a>
-              </div>
+              {socialLinks.length > 0 && (
+                <div className="contact-link-item">
+                  <span className="tiny-label">INSTAGRAM</span>
+                  <a
+                    href={socialLinks[0].href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contact-value"
+                  >
+                    {socialLinks[0].handle}
+                  </a>
+                </div>
+              )}
               <div className="contact-link-item">
                 <span className="tiny-label">LOCATION</span>
                 <p className="contact-value">
-                  {SITE.location.studio}, <br />
-                  {SITE.location.city}, {SITE.location.country}
+                  {site.location.studio}, <br />
+                  {site.location.city}, {site.location.country}
                 </p>
               </div>
             </div>
@@ -75,7 +83,7 @@ export default function ContactSection() {
                 <div className="input-group">
                   <label>INTERESTED IN</label>
                   <select>
-                    {CONTACT_FORM_INTERESTS.map((interest) => (
+                    {contactFormInterests.map((interest) => (
                       <option key={interest}>{interest}</option>
                     ))}
                   </select>
@@ -93,7 +101,7 @@ export default function ContactSection() {
 
               <div className="form-actions mt-8">
                 <button type="submit" className="btn-premium w-full text-center">
-                  {CONTACT_SECTION.submitButtonText}
+                  {contactSection.submitButtonText}
                 </button>
               </div>
             </form>
@@ -120,8 +128,8 @@ export default function ContactSection() {
             >
               <div className="relative w-32 h-32 overflow-hidden" style={{ borderRadius: "50%" }}>
                 <Image
-                  src={SITE.logo}
-                  alt={`${SITE.name} Logo`}
+                  src={site.logo}
+                  alt={`${site.name} Logo`}
                   fill
                   className="object-cover"
                 />
@@ -129,10 +137,10 @@ export default function ContactSection() {
 
               <div className="space-y-6">
                 <h3 className="text-3xl font-serif" style={{ color: "var(--bg-dark)" }}>
-                  {CONTACT_SECTION.successTitle}
+                  {contactSection.successTitle}
                 </h3>
                 <p className="text-gray-600 leading-relaxed font-sans text-xl">
-                  {CONTACT_SECTION.successMessage}
+                  {contactSection.successMessage}
                 </p>
               </div>
 

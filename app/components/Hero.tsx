@@ -1,6 +1,10 @@
-import { HERO_MEDIA } from "../lib/constants";
+import type { HeroMedia } from "../lib/types";
 
-export default function Hero() {
+interface HeroProps {
+  heroMedia: HeroMedia;
+}
+
+export default function Hero({ heroMedia }: HeroProps) {
   return (
     <section className="hero-fullscreen">
       <div className="hero-video-container" aria-hidden="true">
@@ -14,10 +18,10 @@ export default function Hero() {
         >
           <source
             media="(max-width: 767px)"
-            src={HERO_MEDIA.mobileVideo}
+            src={heroMedia.mobileVideo}
             type="video/mp4"
           />
-          <source src={HERO_MEDIA.desktopVideo} type="video/mp4" />
+          <source src={heroMedia.desktopVideo} type="video/mp4" />
         </video>
       </div>
 

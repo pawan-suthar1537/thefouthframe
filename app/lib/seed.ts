@@ -1,0 +1,253 @@
+/**
+ * Database seed script
+ * Run: npx tsx app/lib/seed.ts
+ *
+ * Seeds the initial admin user and website content from current constants.
+ */
+
+import { MongoClient } from "mongodb";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+
+const MONGODB_URI = process.env.MONGODB_URI!;
+
+if (!MONGODB_URI) {
+  console.error("❌ MONGODB_URI not set in .env");
+  process.exit(1);
+}
+
+const unsplash = (id: string, w: number, h: number) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${h}&q=82`;
+
+async function seed() {
+  console.log("🌱 Connecting to MongoDB...");
+  const client = await MongoClient.connect(MONGODB_URI);
+  const db = client.db();
+
+  // ── Seed Admin ──────────────────────────────────────
+  const adminsCol = db.collection("admins");
+  const existingAdmin = await adminsCol.findOne({ username: "admin" });
+
+  if (!existingAdmin) {
+    const hashedPassword = await bcrypt.hash("admin123", 12);
+    await adminsCol.insertOne({
+      username: "admin",
+      password: hashedPassword,
+      createdAt: new Date(),
+    });
+    console.log("✅ Admin user created (username: admin, password: admin123)");
+  } else {
+    console.log("⏭️  Admin user already exists, skipping.");
+  }
+
+  // ── Seed Site Content ───────────────────────────────
+  const contentCol = db.collection("siteContent");
+  const existingContent = await contentCol.findOne({});
+
+  if (!existingContent) {
+    const siteContent = {
+      site: {
+        name: "THE AGENCY FRAME",
+        operatedBy: "THE FOURTH FRAME",
+        established: 2024,
+        logo: "/images/logo.jpg",
+        email: "hellothefourthframe@gmail.com",
+        footerEmail: "HELLO@THEFOURTHFRAME.COM",
+        footerEmailHref: "mailto:hello@thefourthframe.com",
+        location: {
+          studio: "Fourth Frame Production Studio",
+          city: "Bikaner",
+          country: "India",
+        },
+        badges: ["EST. 2024", "PRODUCTION PARTNER", "PAN-INDIA"],
+      },
+      socialLinks: [
+        {
+          label: "Instagram",
+          href: "https://www.instagram.com/the_fourthframe_/",
+          handle: "@the_fourthframe_",
+        },
+      ],
+      heroMedia: {
+        desktopVideo: "/main/main.mp4",
+        mobileVideo: "/main/mianveritical.mp4",
+      },
+      foundersSection: {
+        label: "LEADERSHIP",
+        title: "The Faces Behind",
+        titleAccent: "The Fourth Frame",
+      },
+      founders: [
+        {
+          name: "Co-Founder & Producer",
+          role: "PRODUCER",
+          image: "/main/COP.jpeg",
+        },
+        {
+          name: "Casting Manager",
+          role: "CASTING",
+          image: "/main/CM.jpeg",
+        },
+        {
+          name: "Co-Founder & DOP",
+          role: "DIRECTOR OF PHOTOGRAPHY",
+          image: "/main/CFD.jpeg",
+        },
+      ],
+      servicesSection: {
+        label: "OUR EXPERTISE",
+        title: "Integrated Production &",
+        titleAccent: "Talent Management",
+      },
+      serviceImages: {
+        talent: unsplash("1610296669228-602fa827fc1f", 1200, 1200),
+        production: unsplash("1583939003579-730e3918a45a", 1200, 1200),
+        locations: unsplash("1494526585095-c41746248156", 1200, 1200),
+        backstage: "/main/S3.jpeg",
+        brandShoot: "/main/S1.jpeg",
+        editors: "/main/S4.jpeg",
+        bts: "/main/S2.jpeg",
+      },
+      services: [
+        {
+          index: "01",
+          title: "BACKSTAGE",
+          description:
+            "Complete backstage support to keep the show running smoothly — from team setup to choreography coordination.",
+          image: "/main/S3.jpeg",
+          details: "TEAM | COORDINATION | CHOREOGRAPHY",
+          includes: [
+            "Provide a professional team",
+            "Provide a professional coordinator & choreographer",
+          ],
+        },
+        {
+          index: "02",
+          title: "BRAND SHOOT",
+          description:
+            "End-to-end brand shoot execution — talent, setup, and on-ground creative support for premium results.",
+          image: "/main/S1.jpeg",
+          details: "MODELS | LOCATION | MAKEUP",
+          includes: [
+            "Provide models",
+            "Provide location & studio",
+            "Provide makeup artist",
+          ],
+        },
+        {
+          index: "03",
+          title: "PROFESSIONAL EDITORS",
+          description:
+            "Editing that matches your brand's pace and polish — from short-form education to full event storytelling.",
+          image: "/main/S4.jpeg",
+          details: "REELS | SHORTS | EVENT FILMS",
+          includes: [
+            "Educational reel",
+            "Pre-wedding short song",
+            "Complete event reel",
+          ],
+        },
+        {
+          index: "04",
+          title: "BTS MAN",
+          description:
+            "Dedicated behind-the-scenes coverage to capture the process and energy on set — perfect for social-first content.",
+          image: "/main/S2.jpeg",
+          details: "ON-SET | STORY | SOCIAL",
+          includes: ["Behind-the-scenes capture & coverage"],
+        },
+      ],
+      modelsSection: {
+        label: "OUR TALENT",
+        title: "Models",
+        titleAccent: "Roster",
+      },
+      models: [
+        {
+          id: 1,
+          name: "Iri",
+          height: '162 cm (5\'4")',
+          hair: "Dark Brown",
+          eyes: "Dark Brown",
+          image: "/main/M1.jpeg",
+        },
+        {
+          id: 2,
+          name: "Tamannah",
+          height: '162 cm (5\'4")',
+          hair: "Dark Brown",
+          eyes: "Dark Brown",
+          image: "/main/M3.png",
+        },
+        {
+          id: 3,
+          name: "Bhavika Jain",
+          height: '167 cm (5\'5")',
+          hair: "Black",
+          eyes: "Dark Brown",
+          image: "/main/M4.png",
+        },
+        {
+          id: 4,
+          name: "Zuber mirza",
+          height: '180 cm (5\'9")',
+          hair: "Black",
+          eyes: "Black",
+          image: "/main/M5.png",
+        },
+      ],
+      contactSection: {
+        label: "GET IN TOUCH",
+        title: "CONNECT WITH",
+        titleAccent: "THE FRAME",
+        submitButtonText: "Book Your Talent",
+        successTitle: "Submission Successful",
+        successMessage:
+          "Your query has been submitted and our team will connect with you soon.",
+      },
+      contactFormInterests: [
+        "Talent Booking",
+        "Production Management",
+        "Location Scouting",
+        "Full Agency Service",
+      ],
+      footer: {
+        ctaVideoSrc: "/main/CTABG.mp4",
+        ctaHeadline:
+          "Build visuals that look premium before production even starts.",
+        heading: ["WE COMMAND", "THE STAGE.", "WE CURATE", "THE FACE"],
+        description:
+          "Premium talent casting for global brands and comprehensive backstage logistics for large-scale fashion shows. We handle the hustle; you take the applause.",
+        team: {
+          title: "MAIN TEAM FOURTHFRAME",
+          marketing: "MARKETING HANDLE BY ZAYRAGENCY",
+          members: [
+            { name: "AYAN", role: "THEME DIRECTOR" },
+            { name: "REHAN", role: "D.O.V" },
+            { name: "TANISHA", role: "CASTING DIRECTOR & CHOREOGRAPHER" },
+            { name: "AMIT", role: "BTS MAN" },
+          ],
+        },
+        studioLocations: [{ city: "Bikaner", note: "Primary Base" }],
+      },
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    await contentCol.insertOne(siteContent);
+    console.log("✅ Site content seeded successfully.");
+  } else {
+    console.log("⏭️  Site content already exists, skipping.");
+  }
+
+  await client.close();
+  console.log("🎉 Seed complete!");
+}
+
+seed().catch((err) => {
+  console.error("❌ Seed failed:", err);
+  process.exit(1);
+});

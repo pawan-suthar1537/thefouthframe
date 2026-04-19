@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
-import { SERVICES, SERVICES_SECTION } from "../lib/constants";
+import type { SectionHeader, Service } from "../lib/types";
 
 const cardReveal = {
   type: "spring",
@@ -12,7 +12,12 @@ const cardReveal = {
   mass: 0.8,
 } as const;
 
-export default function Services() {
+interface ServicesProps {
+  servicesSection: SectionHeader;
+  services: Service[];
+}
+
+export default function Services({ servicesSection, services }: ServicesProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -25,7 +30,7 @@ export default function Services() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            {SERVICES_SECTION.label}
+            {servicesSection.label}
           </motion.span>
           <motion.h2
             className="section-title"
@@ -33,15 +38,15 @@ export default function Services() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ ...cardReveal, delay: 0.1 }}
           >
-            {SERVICES_SECTION.title}{" "}
-            <span className="metallic-gold">{SERVICES_SECTION.titleAccent}</span>
+            {servicesSection.title}{" "}
+            <span className="metallic-gold">{servicesSection.titleAccent}</span>
           </motion.h2>
         </div>
 
         <div className="services-grid-premium">
-          {SERVICES.map((s, i) => (
+          {services.map((s, i) => (
             <motion.div
-              key={s.title}
+              key={s.title + i}
               className="service-showcase-card"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -50,7 +55,7 @@ export default function Services() {
             >
               <div className="service-flip">
                 <div className="service-flip-inner">
-                  {/* FRONT (mobile shows details here; desktop flips) */}
+                  {/* FRONT */}
                   <div className="service-face service-front">
                     <div className="service-media">
                       <Image
@@ -61,18 +66,16 @@ export default function Services() {
                         className="service-showcase-image"
                       />
                       <div className="service-media-overlay" />
-                      {/* <span className="service-showcase-number">{s.index}</span> */}
                     </div>
 
                     <div className="service-front-overlay">
-                     
                       <h3 className="service-showcase-title">{s.title}</h3>
 
                       <div className="service-front-mobile-details">
                         <p className="service-showcase-desc">{s.description}</p>
                         <div className="service-showcase-meta">{s.details}</div>
 
-                        {"includes" in s && Array.isArray(s.includes) && s.includes.length > 0 ? (
+                        {s.includes && Array.isArray(s.includes) && s.includes.length > 0 ? (
                           <ul className="service-showcase-list">
                             {s.includes.map((item) => (
                               <li key={item}>{item}</li>
@@ -83,7 +86,7 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* BACK (desktop hover flip shows this) */}
+                  {/* BACK */}
                   <div className="service-face service-back">
                     <div className="service-back-shell">
                       <div className="service-back-top">
@@ -92,7 +95,7 @@ export default function Services() {
                         <p className="service-back-desc">{s.description}</p>
                       </div>
 
-                      {"includes" in s && Array.isArray(s.includes) && s.includes.length > 0 ? (
+                      {s.includes && Array.isArray(s.includes) && s.includes.length > 0 ? (
                         <ul className="service-showcase-list">
                           {s.includes.map((item) => (
                             <li key={item}>{item}</li>

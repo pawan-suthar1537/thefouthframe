@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
-import { FOUNDERS, FOUNDERS_SECTION } from "../lib/constants";
+import type { SectionHeader, Founder } from "../lib/types";
 
 const cardReveal = {
   type: "spring",
@@ -12,7 +12,12 @@ const cardReveal = {
   mass: 0.8,
 } as const;
 
-export default function Founders() {
+interface FoundersProps {
+  foundersSection: SectionHeader;
+  founders: Founder[];
+}
+
+export default function Founders({ foundersSection, founders }: FoundersProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -25,7 +30,7 @@ export default function Founders() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            {FOUNDERS_SECTION.label}
+            {foundersSection.label}
           </motion.span>
           <motion.h2
             className="section-title"
@@ -33,15 +38,15 @@ export default function Founders() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ ...cardReveal, delay: 0.1 }}
           >
-            {FOUNDERS_SECTION.title}{" "}
-            <span className="accent-text" style={{ fontStyle: "italic" }}>{FOUNDERS_SECTION.titleAccent}</span>
+            {foundersSection.title}{" "}
+            <span className="accent-text" style={{ fontStyle: "italic" }}>{foundersSection.titleAccent}</span>
           </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12" style={{ perspective: "1200px" }}>
-          {FOUNDERS.map((founder, i) => (
+          {founders.map((founder, i) => (
             <motion.div
-              key={founder.role}
+              key={founder.role + i}
               className="group relative h-[520px] w-full overflow-hidden cursor-pointer"
               style={{ borderRadius: "var(--radius-xl)", transformStyle: "preserve-3d" }}
               initial={{ opacity: 0, y: 40, rotateX: 15 }}

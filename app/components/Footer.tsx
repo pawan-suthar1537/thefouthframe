@@ -5,18 +5,26 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { scrollToHash } from "../lib/scrollToHash";
-import { SITE, NAV_ITEMS, SOCIAL_LINKS, FOOTER } from "../lib/constants";
+import { NAV_ITEMS, NAV_CTA } from "../lib/constants";
+import type { SiteData, SocialLink, FooterData } from "../lib/types";
 
-export default function Footer() {
+interface FooterProps {
+  site: SiteData;
+  socialLinks: SocialLink[];
+  footer: FooterData;
+}
+
+export default function Footer({ site, socialLinks, footer }: FooterProps) {
   const year = new Date().getFullYear();
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
   const isHomePage = pathname === "/";
+  const isAdminPage = pathname.startsWith("/admin");
   const ctaBandRef = useRef<HTMLDivElement>(null);
   const [shouldLoadBandVideo, setShouldLoadBandVideo] = useState(false);
 
   useEffect(() => {
-    if (isContactPage || shouldLoadBandVideo) {
+    if (isAdminPage || isContactPage || shouldLoadBandVideo) {
       return;
     }
 
@@ -43,7 +51,10 @@ export default function Footer() {
     return () => {
       observer.disconnect();
     };
-  }, [isContactPage, shouldLoadBandVideo]);
+  }, [isAdminPage, isContactPage, shouldLoadBandVideo]);
+
+  // Hide footer on admin pages
+  if (isAdminPage) return null;
 
   const handleAgencyClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isHomePage || !href.startsWith("/#")) {
@@ -83,7 +94,7 @@ export default function Footer() {
                 zIndex: 0,
               }}
             >
-              <source src={FOOTER.ctaVideoSrc} type="video/mp4" />
+              <source src={footer.ctaVideoSrc} type="video/mp4" />
             </video>
           ) : (
             <div
@@ -108,7 +119,7 @@ export default function Footer() {
           />
 
           <div className="footer-top-copy" style={{ position: "relative", zIndex: 2 }}>
-            <h2>{FOOTER.ctaHeadline}</h2>
+            <h2>{footer.ctaHeadline}</h2>
           </div>
         </div>
       )}
@@ -116,16 +127,16 @@ export default function Footer() {
       <div className="page-container">
         <div className="footer-main-v5">
           <div className="footer-left-v5">
-            <h2 className="footer-heading-v5">{FOOTER.heading[0]}<br />{FOOTER.heading[1]}<br />{FOOTER.heading[2]}<br />{FOOTER.heading[3]}</h2>
+            <h2 className="footer-heading-v5">{footer.heading[0]}<br />{footer.heading[1]}<br />{footer.heading[2]}<br />{footer.heading[3]}</h2>
             <div className="footer-info-v5">
-              <p className="footer-desc-v5">{FOOTER.description}</p>
+              <p className="footer-desc-v5">{footer.description}</p>
               
               <div className="footer-team-section" style={{ marginTop: '2.5rem', marginBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <span className="footer-label-v5" style={{ color: 'var(--accent-gold)' }}>
-                  {FOOTER.team.title}
+                  {footer.team.title}
                 </span>
                 <div style={{ display: 'grid', gap: '0.6rem' }}>
-                  {FOOTER.team.members.map((member) => (
+                  {footer.team.members.map((member) => (
                     <div key={member.name} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
                       <strong style={{ fontSize: '0.85rem', color: '#fff', letterSpacing: '0.05em' }}>{member.name}</strong>
                       <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em' }}>— {member.role}</span>
@@ -133,12 +144,12 @@ export default function Footer() {
                   ))}
                 </div>
                 <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.15em', marginTop: '0.5rem' }}>
-                  {FOOTER.team.marketing}
+                  {footer.team.marketing}
                 </div>
               </div>
 
-              <a href={SITE.footerEmailHref} className="footer-email-v5">
-                {SITE.footerEmail}
+              <a href={site.footerEmailHref} className="footer-email-v5">
+                {site.footerEmail}
               </a>
             </div>
           </div>
@@ -147,7 +158,7 @@ export default function Footer() {
             <div className="footer-nav-section-v5">
               <span className="footer-label-v5">SOCIALS</span>
               <div className="footer-links-v5">
-                {SOCIAL_LINKS.map((social) => (
+                {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
@@ -164,7 +175,7 @@ export default function Footer() {
             <div className="footer-nav-section-v5">
               <span className="footer-label-v5">STUDIO</span>
               <div className="footer-links-v5">
-                {FOOTER.studioLocations.map((location) => (
+                {footer.studioLocations.map((location) => (
                   <div key={location.city} className="footer-location-v5">
                     <strong>{location.city}</strong>
                     <span>{location.note}</span>
@@ -193,12 +204,12 @@ export default function Footer() {
 
         <div className="footer-bottom-v5">
           <div className="footer-badges-v5">
-            {SITE.badges.map((badge) => (
+            {site.badges.map((badge) => (
               <span key={badge} className="badge-v5">{badge}</span>
             ))}
           </div>
           <p className="copyright-v5">
-            &copy; {year} {SITE.name}. OPERATED BY {SITE.operatedBy}.
+            &copy; {year} {site.name}. OPERATED BY {site.operatedBy}.
           </p>
         </div>
       </div>

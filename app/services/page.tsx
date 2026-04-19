@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import Services from "../components/Services";
 import Process from "../components/Process";
 import CTA from "../components/CTA";
+import { getSiteContent } from "../lib/data";
 
 export const metadata: Metadata = {
   title: "Services | The Fourth Frame",
   description: "Professional photography, videography, social media management, brand strategy, and creative direction services by The Fourth Frame.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const content = await getSiteContent();
+
   return (
     <>
       <div className="page-hero">
@@ -23,7 +26,10 @@ export default function ServicesPage() {
           From professional shoots to full-scale digital strategy.
         </p>
       </div>
-      <Services />
+      <Services
+        servicesSection={content.servicesSection}
+        services={content.services}
+      />
       <Process />
       <CTA />
     </>

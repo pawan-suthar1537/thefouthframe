@@ -3,6 +3,7 @@ import "./globals.css";
 import HashScrollManager from "./components/HashScrollManager";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import { getSiteContent } from "./lib/data";
 
 export const metadata: Metadata = {
   title: "THE FOURTH FRAME | Luxury Modeling, Talent & Production",
@@ -19,18 +20,31 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let content = null;
+  try {
+    content = await getSiteContent();
+  } catch {
+    // DB not seeded yet — fallback handled in components
+  }
+
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="antialiased">
         <HashScrollManager />
-        <Navbar />
+        {content && <Navbar site={content.site} />}
         {children}
-        <Footer />
+        {content && (
+          <Footer
+            site={content.site}
+            socialLinks={content.socialLinks}
+            footer={content.footer}
+          />
+        )}
       </body>
     </html>
   );

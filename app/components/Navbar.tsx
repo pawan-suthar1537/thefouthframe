@@ -6,25 +6,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { scrollToHash } from "../lib/scrollToHash";
-import { SITE, NAV_ITEMS, NAV_CTA } from "../lib/constants";
+import { NAV_ITEMS, NAV_CTA } from "../lib/constants";
+import type { SiteData } from "../lib/types";
 
-export default function Navbar() {
+interface NavbarProps {
+  site: SiteData;
+}
+
+export default function Navbar({ site }: NavbarProps) {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const isAdminPage = pathname.startsWith("/admin");
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (isAdminPage) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial scroll position
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isAdminPage]);
+
+  // Hide navbar on admin pages
+  if (isAdminPage) return null;
 
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isHomePage || !href.startsWith("/#")) {
@@ -36,16 +47,15 @@ export default function Navbar() {
     scrollToHash(href.slice(1));
   };
 
-  // On non-home pages, we always want the 'scrolled' styling so text is visible on white background
   const navClass = `navbar ${!isHomePage || isScrolled ? "scrolled" : ""}`;
 
   return (
     <nav className={navClass}>
       <div className="navbar-shell">
-        <Link href="/" className="logo-brand" aria-label={`${SITE.name} home`}>
+        <Link href="/" className="logo-brand" aria-label={`${site.name} home`}>
           <Image
-            src={SITE.logo}
-            alt={`${SITE.name} Logo`}
+            src={site.logo}
+            alt={`${site.name} Logo`}
             width={48}
             height={48}
             priority

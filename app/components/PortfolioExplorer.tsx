@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
-import { MODELS, MODELS_SECTION } from "../lib/constants";
+import type { SectionHeader, Model } from "../lib/types";
 
 const cardReveal = {
   type: "spring",
@@ -12,7 +12,12 @@ const cardReveal = {
   mass: 0.8,
 } as const;
 
-export default function PortfolioExplorer() {
+interface PortfolioExplorerProps {
+  modelsSection: SectionHeader;
+  models: Model[];
+}
+
+export default function PortfolioExplorer({ modelsSection, models }: PortfolioExplorerProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -25,7 +30,7 @@ export default function PortfolioExplorer() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
           >
-            {MODELS_SECTION.label}
+            {modelsSection.label}
           </motion.span>
           <motion.h2
             className="section-title"
@@ -33,15 +38,15 @@ export default function PortfolioExplorer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ ...cardReveal, delay: 0.1 }}
           >
-            {MODELS_SECTION.title}{" "}
+            {modelsSection.title}{" "}
             <span className="accent-text" style={{ fontStyle: "italic" }}>
-              {MODELS_SECTION.titleAccent}
+              {modelsSection.titleAccent}
             </span>
           </motion.h2>
         </div>
 
         <div className="models-grid">
-          {MODELS.map((model, i) => (
+          {models.map((model, i) => (
             <motion.div
               key={model.id}
               className="group"
@@ -61,7 +66,6 @@ export default function PortfolioExplorer() {
                 boxShadow: "0 28px 60px rgba(0,0,0,0.18)",
               }}
             >
-              {/* Image */}
               <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
                 <Image
                   src={model.image}
@@ -83,7 +87,6 @@ export default function PortfolioExplorer() {
                 />
               </div>
 
-              {/* Content overlay */}
               <div
                 style={{
                   position: "absolute",
@@ -97,7 +100,6 @@ export default function PortfolioExplorer() {
                   zIndex: 10,
                 }}
               >
-                {/* Model Name */}
                 <h4
                   style={{
                     fontFamily: "var(--font-heading)",
@@ -112,7 +114,6 @@ export default function PortfolioExplorer() {
                   {model.name}
                 </h4>
 
-                {/* Details grid */}
                 <div
                   style={{
                     display: "grid",
